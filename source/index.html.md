@@ -3,14 +3,10 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - csharp
   
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 ---
@@ -34,7 +30,7 @@ Only admin users have access to an API token
 
 Your API token is: [todo]
 
-> To authorize, use this code bitch:
+> To authorize, use this code:
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -926,69 +922,3 @@ Retrieves a specific public holiday.
 Parameter | Description
 --------- | -----------
 ID | The ID of the public holiday to retrieve
-
-# Organisation
-
-## Organisation Detail
-
-> A typical organisation response:
-
-```json
-{
-  "id": 1,
-  "name": "Timetastic Ltd",
-  "setupCompleted": true,
-  "createdAt": "2014-10-30T10:40:15",
-  "updatedAt": "2018-11-21T14:40:56",
-  "country": "GB",
-  "vatNumber": "VAT1",
-  "stripeId": "cus_6PeLbOQB6slUcS",
-  "billingEmail": "hello@timetastic.co.uk",
-  "billingEmail2": null,
-  "archived": false,
-  "billingLock": false,
-  "paymentExpiring": false,
-  "startBilling": "2020-01-01",
-  "lastBill": "2015-02-28",
-  "nextBill": "2020-01-01",
-  "freeUserCount": 3,
-  "systemEmail": null,
-  "costPerUser": 0.5,
-  "currency": "gbp",
-  "yearStart": 10,
-  "linkedWithGoogle": false,
-  "slackBotAccessToken": null,
-  "slackBotUserId": null,
-  "slackLastSync": null,
-  "hasSlackBotIntegration": false,
-  "yearStartOrg": 10,
-  "freeAgentContactId": "7147081",
-  "billingInProgress": false,
-  "carryForwardHours": 1,
-  "carryForwardDays": 4,
-  "billingGracePeriodStart": null,
-  "billingGracePeriodSecondBillAttemptDue": null,
-  "billingGracePeriodGiveUpAndLockDue": null,
-  "carryForwardSetup": true,
-  "privacyMode": true,
-  "timeZone": "GMT Standard Time",
-  "vatNumberUpdated": "2018-10-25T09:03:08",
-  "inGracePeriod": false,
-  "billingEmails": "hello@timetastic.co.uk",
-  "currentYear": 2018
-}```
-
-A user response from the API contains the following information:
-
-Parameter |  Description
---------- | ------- | -----------
-**Id** | The unique `Id` for this public holiday
-**name** | The name of the holiday
-**date** | The public holiday date
-**organisationId** | The organisation Id of this public holiday
-**createdAt** | When the public holiday was created
-**updatedAt** | When the public holiday was last updated
-**countryCode** | The country code associated with this public holiday
-**bankHolidaySetId** | The "set" (group of public holidays) that this public holiday belongs to
-
-

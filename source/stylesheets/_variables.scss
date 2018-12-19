@@ -21,23 +21,57 @@ under the License.
 // Use these settings to help adjust the appearance of Slate
 
 
+// Timetastic colors
+
+$timetastic-purple: #862C50;
+$timetastic-purple-light: #A4617C;
+$timetastic-purple-medium: #8D4260;
+$timetastic-purple-dark: #370a1c;
+
+$timetastic-blue: #459FF3;
+$timetastic-blue-light: #66cccc;
+$timetastic-blue-medium: #4399CB;
+
+$timetastic-red: #E22A40;
+$timetastic-red-light: #FF6666;
+$timetastic-red-medium: #FF9966;
+
+$timetastic-background: #F7F7F7;
+$timetastic-background-light: #FFFFFF;
+$timetastic-highlight-yellow: #FEFEF1;
+
+$timetastic-green: #22aa66;
+$timetastic-green-light: rgb(102, 204, 153);
+
+$timetastic-gold: #ffdf00;
+
+$timetastic-grey: #747478;
+$timetastic-grey-medium: #555555;
+$timetastic-grey-dark: #333333;
+
+$timetastic-lightgrey: #F7F7F7;
+$timetastic-lightgrey-medium: #CFCFCF;
+$timetastic-table-hover-grey: #eeeeee;
+
+
+
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
+$nav-bg: $timetastic-purple !default;
+$examples-bg: $timetastic-purple-dark !default;
+$code-bg: $timetastic-purple-dark !default;
 $code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
+$nav-subitem-bg: $timetastic-purple-dark !default;
+$nav-active-bg: $timetastic-blue !default;
+$nav-active-parent-bg: $timetastic-purple-dark !default; // parent links of the current section
 $lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
+$lang-select-bg: $timetastic-purple-dark !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
+$main-bg: $timetastic-background !default;
+$aside-notice-bg: $timetastic-blue-medium !default;
+$aside-warning-bg: $timetastic-red-medium !default;
+$aside-success-bg: $timetastic-green !default;
 $search-notice-bg: #c97a7e !default;
 
 
