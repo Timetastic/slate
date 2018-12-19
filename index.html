@@ -209,7 +209,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo.svg" class="logo" alt="Logo" />
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -301,20 +301,31 @@
               </ul>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Timetastic API! Use the Timetastic API to feed Timetastic into your internal apps and custom workflows. 
-To get started, read the section below on Authentication, and then rate limiting, then get stuck in.</p>
+To get started, read the section below on Authentication, then rate limiting and get stuck in.</p>
 <h1 id='rate-limiting'>Rate Limiting</h1>
-<p>To keep things running smoothly, there is a rate-limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a 429 response code.
+<p>To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a <code>429</code> response code.
 For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
-<h1 id='authentication'>Authentication</h1>
+
+<blockquote>
+<p>Rate limiting responses look like this</p>
+</blockquote>
+<pre class="highlight html tab-html"><code>Status Code: 429
+Retry-After: 58
+Content: API calls quota exceeded! maximum admitted 5 per 1s.
+</code></pre>
+<blockquote>
+<p>For calls that don&#39;t get rate limited, you can monitor your usage with the following headers:</p>
+</blockquote>
+<pre class="highlight html tab-html"><code>X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
+X-Rate-Limit-Remaining: number of request remaining 
+X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
+</code></pre><h1 id='authentication'>Authentication</h1>
 <p>To use the API, you need an API token.</p>
 
 <p>The token identifies your user, so you&#39;ll have the same permissions as your user account
@@ -401,11 +412,11 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
 </tr>
 <tr>
 <td><strong>requestedById</strong></td>
-<td>The <code>id</code> of the user who requested this leave</td>
+<td>The <code>Id</code> of the user who requested this leave</td>
 </tr>
 <tr>
 <td><strong>leaveTypeId</strong></td>
-<td>The <code>id</code> of the leave type associated with this leave</td>
+<td>The <code>Id</code> of the leave type associated with this leave</td>
 </tr>
 <tr>
 <td><strong>duration</strong></td>
