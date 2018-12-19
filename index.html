@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -225,24 +222,86 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#rate-limiting" class="toc-h1 toc-link" data-title="Rate Limiting">Rate Limiting</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#holidays" class="toc-h1 toc-link" data-title="Holidays">Holidays</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#holiday-detail" class="toc-h2 toc-link" data-title="Holiday Detail">Holiday Detail</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#list-all-holidays" class="toc-h2 toc-link" data-title="List All Holidays">List All Holidays</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-a-specific-holiday" class="toc-h2 toc-link" data-title="Get a Specific Holiday">Get a Specific Holiday</a>
+                  </li>
+                  <li>
+                    <a href="#request-a-holiday" class="toc-h2 toc-link" data-title="Request a Holiday">Request a Holiday</a>
+                  </li>
+                  <li>
+                    <a href="#update-action-a-holiday" class="toc-h2 toc-link" data-title="Update (action) a Holiday">Update (action) a Holiday</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#user-detail" class="toc-h2 toc-link" data-title="User Detail">User Detail</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-users" class="toc-h2 toc-link" data-title="List all Users">List all Users</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-user" class="toc-h2 toc-link" data-title="Get a Specific User">Get a Specific User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#departments" class="toc-h1 toc-link" data-title="Departments">Departments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#department-detail" class="toc-h2 toc-link" data-title="Department Detail">Department Detail</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-departments" class="toc-h2 toc-link" data-title="List all Departments">List all Departments</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-department" class="toc-h2 toc-link" data-title="Get a Specific Department">Get a Specific Department</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#leave-types" class="toc-h1 toc-link" data-title="Leave Types">Leave Types</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#department-detail-2" class="toc-h2 toc-link" data-title="Department Detail">Department Detail</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-leave-types" class="toc-h2 toc-link" data-title="List all Leave Types">List all Leave Types</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-leave-type" class="toc-h2 toc-link" data-title="Get a Specific Leave Type">Get a Specific Leave Type</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#public-holidays" class="toc-h1 toc-link" data-title="Public Holidays">Public Holidays</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#public-holiday-detail" class="toc-h2 toc-link" data-title="Public Holiday Detail">Public Holiday Detail</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-public-holidays" class="toc-h2 toc-link" data-title="List all Public Holidays">List all Public Holidays</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-public-holiday" class="toc-h2 toc-link" data-title="Get a Specific Public Holiday">Get a Specific Public Holiday</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -254,80 +313,221 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>Welcome to the Timetastic API! Use the Timetastic API to feed Timetastic into your internal apps and custom workflows. 
+To get started, read the section below on Authentication, and then rate limiting, then get stuck in.</p>
+<h1 id='rate-limiting'>Rate Limiting</h1>
+<p>To keep things running smoothly, there is a rate-limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a 429 response code.
+For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
 <h1 id='authentication'>Authentication</h1>
+<p>To use the API, you need an API token.</p>
+
+<p>The token identifies your user, so you&#39;ll have the same permissions as your user account
+Only admin users have access to an API token</p>
+
+<p>Your API token is: [todo]</p>
+
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
 </blockquote>
+<h1 id='holidays'>Holidays</h1>
+<p>Using the API, you can query for holidays in Timetastic. You can also use the API to update (approve or decline) holidays, and to request new time off.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<aside class="success">The API refers to any kind of booked time off as holidays.</aside>
+<h2 id='holiday-detail'>Holiday Detail</h2>
+<blockquote>
+<p>A typical holiday response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101010</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-11T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"startType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morning"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"endType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afternoon"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gareth Terrace"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"requestedById"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"leaveTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"deduction"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"actionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-07T20:05:02"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-07T20:05:10"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm not working today!"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"declineReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"autoApproved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bookingUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"leaveType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A holiday response from the API contains the following information:</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Id</strong></td>
+<td>The unique <code>Id</code> for this holiday</td>
+</tr>
+<tr>
+<td><strong>startDate</strong></td>
+<td>Start of the holiday. Use in conjunction with the start type to determine the holiday start,</td>
+</tr>
+<tr>
+<td><strong>startType</strong></td>
+<td><strong>Morning</strong> - Booked for the morning of the start date <br><strong>Afternoon</strong> - Booked after the morning of the start date (starts at lunchtime) <br><strong>Hours</strong> - This is an hourly booking, use the time in StartDate</td>
+</tr>
+<tr>
+<td><strong>endDate</strong></td>
+<td>End of the holiday. Use in conjunction with the end type to determine the holiday end</td>
+</tr>
+<tr>
+<td><strong>endType</strong></td>
+<td>Used to define the time the holiday ends: <br><strong>Morning</strong> - Ends after the morning of the last day (lunchtime) <br><strong>Afternoon</strong> - Ends at the end of the last day (whole day booked) <br><strong>Hours</strong> - This is an hourly booking, use the time in the endDate</td>
+</tr>
+<tr>
+<td><strong>userId</strong></td>
+<td>The <code>Id</code> of the user this leave is for</td>
+</tr>
+<tr>
+<td><strong>userName</strong></td>
+<td>The full name of the user this leave is for</td>
+</tr>
+<tr>
+<td><strong>requestedById</strong></td>
+<td>The <code>id</code> of the user who requested this leave</td>
+</tr>
+<tr>
+<td><strong>leaveTypeId</strong></td>
+<td>The <code>id</code> of the leave type associated with this leave</td>
+</tr>
+<tr>
+<td><strong>duration</strong></td>
+<td>The full duration of this leave, check <code>bookingUnit</code> to determine if it&#39;s hours or days</td>
+</tr>
+<tr>
+<td><strong>deduction</strong></td>
+<td>The deduction from the users allowance, check <code>bookingUnit</code> to determine if it&#39;s hours or days</td>
+</tr>
+<tr>
+<td><strong>actionerId</strong></td>
+<td>If the holiday has been actioned (approved or declined), the <code>Id</code> of the user who did this</td>
+</tr>
+<tr>
+<td><strong>createdAt</strong></td>
+<td>When the holiday was created (booked)</td>
+</tr>
+<tr>
+<td><strong>updatedAt</strong></td>
+<td>When the holiday was last updated (including actioning the holiday)</td>
+</tr>
+<tr>
+<td><strong>reason</strong></td>
+<td>The reason for the holiday. Only visible if the requestor has permissions to see this</td>
+</tr>
+<tr>
+<td><strong>declineReason</strong></td>
+<td>The reason for declining (or cancelling) the holiday. Only visible if the requestor has permissions to see this</td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td>The status of this holiday = <code>[&#39;Pending&#39;, &#39;Approved&#39;, &#39;Cancelled&#39;, &#39;Declined&#39;]</code></td>
+</tr>
+<tr>
+<td><strong>autoApproved</strong></td>
+<td>Whether this holiday was automatically approved (for example, if booked by an Admin user)</td>
+</tr>
+<tr>
+<td><strong>bookingUnit</strong></td>
+<td>Whether the holiday was booked in day(s) or hours. = <code>[&#39;Days&#39;, &#39;Hours&#39;]</code></td>
+</tr>
+<tr>
+<td><strong>leaveType</strong></td>
+<td>The name of the leave type associated with this leave</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-holidays'>List All Holidays</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/holidays"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
+<blockquote>
+<p>or to filter for a specific date range:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/holidays?Start=2018-01-01&amp;End=2018-01-31
+  -H "</span>Authorization: Bearer YOUR_TOKEN<span class="s2">"
+</span></code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"holidays"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101010</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-11T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morning"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afternoon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gareth Terrace"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"requestedById"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leaveTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"deduction"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-07T20:05:02"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-07T20:05:10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm not working today!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"declineReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"autoApproved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bookingUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leaveType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5256662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-18T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morning"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-22T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afternoon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary Bury"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"requestedById"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leaveTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"deduction"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08T21:40:46"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08T21:40:51"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tererife holiday!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"declineReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"autoApproved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bookingUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leaveType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"totalRecords"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextPageLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.timetastic.co.uk/api/holidays?pagenumber=2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previousPageLink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">    
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
+<p>Search for holidays, filtered as per your query parameters.</p>
+
+<p><code>GET http://app.timetastic.co.uk/api/holidays</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
+<p>Append these query paramters to your request to filter your holidays. As a minimum we&#39;d recommend setting a date range filter.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -336,51 +536,87 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><strong>DepartmentId</strong></td>
+<td>empty</td>
+<td>If set, only include holidays within that department</td>
 </tr>
 <tr>
-<td>available</td>
+<td><strong>UserIds</strong></td>
+<td>empty</td>
+<td>If set to an Id (or CSV list of Ids), only include holidays for these users</td>
+</tr>
+<tr>
+<td><strong>ExclusionUserIds</strong></td>
+<td>empty</td>
+<td>If set to an Id (or CSV list of Ids), don&#39;t include holidays for these users</td>
+</tr>
+<tr>
+<td><strong>NonArchivedUsersOnly</strong></td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Only return holidays for users that haven&#39;t been archived</td>
+</tr>
+<tr>
+<td><strong>Start</strong></td>
+<td>empty</td>
+<td>If set, only include holidays that start after this date</td>
+</tr>
+<tr>
+<td><strong>End</strong></td>
+<td>empty</td>
+<td>If set, only include holidays that end up to this date</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>PendingOrApproved</td>
+<td>Filter all holidays for the given status. If none given then all pending and approved holidays are included. Values are: <br><code>Pending (1)</code> <br> <code>Approved (2)</code> <br><code>Cancelled (4)</code> <br> <code>Declined (8)</code>. <br>This is a bitwise enum, so for example if you want all declined and cancelled you can pass 12 as the status.</td>
+</tr>
+<tr>
+<td><strong>ApproverId</strong></td>
+<td>empty</td>
+<td>If set, only include holidays where this is their approver</td>
+</tr>
+<tr>
+<td><strong>PageNumber</strong></td>
+<td>empty</td>
+<td>Used to control paging - see paging below.</td>
 </tr>
 </tbody></table>
+<h3 id='paging'>Paging</h3>
+<p>You are limited to 100 holidays in any response. If your query returns more than this, you&#39;ll need to request any additional pages. With every request, you get a sumary as shown in the JSON response in the right-hand column.</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>By examing this response, you&#39;ll be able to determine whether additional requests are needed. The <code>nextPageLink</code> will tell you what request to make for the next set of responses.</p>
+<h2 id='get-a-specific-holiday'>Get a Specific Holiday</h2>
+<p><code>GET https://app.timetastic.co.uk/api/holidays/&lt;ID&gt;</code></p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/holidays/1"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5256662</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-18T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"startType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morning"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-22T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afternoon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gary Bury"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestedById"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"leaveTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deduction"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"actionerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08T21:40:46"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08T21:40:51"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tererife holiday!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"declineReason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"autoApproved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bookingUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"leaveType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>Retrieves a specific holiday.</p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -390,36 +626,610 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>The ID of the holiday to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='request-a-holiday'>Request a Holiday</h2>
+<p><code>POST http://api.timetastic.co.uk/api/holidays</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Use this to submit a leave request to Timetastic. You can book for any user in your organisation. 
+Post your holiday request as JSON in the body of the post. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>First of all, you need to specify <code>from</code> and <code>to</code> dates - these determine the dates for the holiday. If you want from the 1st Jan to the 5th for example, you&#39;d have <code>2018-01-01</code> as the <code>from</code>, and <code>2018-01-05</code> as the <code>to</code>. If you want a booking on just one day, the 2 dates should be set to the same value.
+Next, you need to specify a <code>fromTime</code> and <code>endTime</code>. If you&#39;re booking in days (the default in Timetastic), then your options here are <code>AM</code> or <code>PM</code>. 
+If you&#39;re booking hourly (only supported if the user has their allowances tracked in hours, or if the leave type is non-deductable), then you need to speciify the time, expressed as the number of minutes since midnight. For example 540 would represent 9:00am.</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>Some examples:</p>
+
+<table><thead>
+<tr>
+<th>from</th>
+<th>fromTime</th>
+<th>to</th>
+<th>toTime</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2018-01-01</td>
+<td>AM</td>
+<td>2018-01-02</td>
+<td>PM</td>
+<td>2 full days - the 1st and 2nd Jan</td>
+</tr>
+<tr>
+<td>2018-01-01</td>
+<td>AM</td>
+<td>2018-01-01</td>
+<td>PM</td>
+<td>1 full day - the 1st Jan.</td>
+</tr>
+<tr>
+<td>2018-01-01</td>
+<td>AM</td>
+<td>2018-01-02</td>
+<td>AM</td>
+<td>Half a day, just the morning</td>
+</tr>
+<tr>
+<td>2018-01-01</td>
+<td>PM</td>
+<td>2018-01-02</td>
+<td>PM</td>
+<td>Half a day, just the afternoon</td>
+</tr>
+<tr>
+<td>2018-01-01</td>
+<td>PM</td>
+<td>2018-01-02</td>
+<td>AM</td>
+<td>The afternoon of the 1st, and the morning of the 2nd</td>
+</tr>
+<tr>
+<td>2018-01-01</td>
+<td>540</td>
+<td>2018-01-01</td>
+<td>720</td>
+<td>Hourly bookings, this one is from 9am to noon.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Let&#39;s book off the 20th December, for one user, requested as them:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://app.timetastic.co.uk/api/holidays'</span> 
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span> 
+  -H <span class="s1">'Content-Type: application/json'</span>
+  --data <span class="s1">$'{"from": "2018-12-20",
+              "to": "2018-12-20",
+              "fromTime": "AM",
+              "toTime": "PM",
+              "leaveTypeId": 57942,
+              "reason": "Testing the API",
+              "userOrDepartmentId": 146599,
+              "bookFor": 0,
+              "suppressEmails": false,
+              "override": true,
+              "bookAsRequestee": true,
+              "overrideLockedDays": true}'</span>
+</code></pre>
+<blockquote>
+<p>Assumiung this request was valid, here&#39;s the response from the server:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "success": true,
+    "response": "Request sent to Gary Bury",
+    "rejections": false,
+    "autoApproved": false,
+    "holidayId": 5538346,
+    "overrideRequired": false,
+    "overrideLockedDateRequired": false
+}
+</code></pre>
+<blockquote>
+<p>Or, if you&#39;re aleady off:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "success": false,
+    "response": "You already have an absence booked during this period. Please check the dates.",
+    "rejections": true,
+    "autoApproved": false,
+    "holidayId": 0,
+    "overrideRequired": false,
+    "overrideLockedDateRequired": false
+}
+</code></pre><h3 id='holiday-request-model-schema'>Holiday Request Model Schema</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>from</strong></td>
+<td>Date string</td>
+<td>Yes</td>
+<td>The start <strong>date</strong> of the request - don&#39;t include time information here.</td>
+</tr>
+<tr>
+<td><strong>to</strong></td>
+<td>Date string</td>
+<td>Yes</td>
+<td>The end <strong>date</strong> of the request - don&#39;t include time information here.</td>
+</tr>
+<tr>
+<td><strong>fromTime</strong></td>
+<td>String</td>
+<td>Yes</td>
+<td>The start time for the request. Either <code>AM</code>, <code>PM</code>, or a time. <a href="#request-a-holiday">see above</a></td>
+</tr>
+<tr>
+<td><strong>toTime</strong></td>
+<td>String</td>
+<td>Yes</td>
+<td>The start time for the request. Either <code>AM</code>, <code>PM</code>, or a time. <a href="#request-a-holiday">see above</a></td>
+</tr>
+<tr>
+<td><strong>leaveTypeId</strong></td>
+<td>Integer</td>
+<td>Yes</td>
+<td>The leave type of the request</td>
+</tr>
+<tr>
+<td><strong>reason</strong></td>
+<td>String</td>
+<td>No</td>
+<td>A reason for the request</td>
+</tr>
+<tr>
+<td><strong>userOrDepartmentId</strong></td>
+<td>Integer</td>
+<td>Yes</td>
+<td>The <code>Id</code> of the user or department you are booking for. See <code>bookFor</code>.</td>
+</tr>
+<tr>
+<td><strong>bookFor</strong></td>
+<td>Enum</td>
+<td>Yes</td>
+<td>Flag to specify who you are booking for. <br><code>0</code> - Book for the <strong>user</strong> specified in userOrDepartmentId<br><code>1</code> - Book for the <strong>department</strong> specified in userOrDepartmentId<br><code>2</code> - Book for <strong>all users</strong>.</td>
+</tr>
+<tr>
+<td><strong>suppressEmails</strong></td>
+<td>Bool</td>
+<td>No</td>
+<td>If set, this will prevent any leave request emails from being sent when the request is processed. Defaults to false.</td>
+</tr>
+<tr>
+<td><strong>override</strong></td>
+<td>Bool</td>
+<td>No</td>
+<td>If set, any department max-off limits are ignored when making the booking. Defaults to false.</td>
+</tr>
+<tr>
+<td><strong>overrideLockedDays</strong></td>
+<td>Bool</td>
+<td>No</td>
+<td>If set, locked dates are ignored when making the booking. Defaults to false.</td>
+</tr>
+<tr>
+<td><strong>bookAsRequestee</strong></td>
+<td>Bool</td>
+<td>No</td>
+<td>If set, the request is made as though it were being made by the requestee, instead of the admin user associated with the API key. Use this to ensure the <strong>normal</strong> approvial process happens. Defaults to false.</td>
+</tr>
+</tbody></table>
+<h3 id='holiday-request-response'>Holiday Request Response</h3>
+<p>When you book a holiday through the API you get a JSON response, containing the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>success</strong></td>
+<td>Whether the booking request was successfull or not</td>
+</tr>
+<tr>
+<td><strong>response</strong></td>
+<td>A response message from the booking request</td>
+</tr>
+<tr>
+<td><strong>rejections</strong></td>
+<td>Whether there were any rejections with the booking, if it was against a department</td>
+</tr>
+<tr>
+<td><strong>autoApproved</strong></td>
+<td>Whether the request was automatically approved or not</td>
+</tr>
+<tr>
+<td><strong>holidayId</strong></td>
+<td>The <code>Id</code> of the newly created holiday</td>
+</tr>
+<tr>
+<td><strong>overrideRequired</strong></td>
+<td>Whether the holiday can be force-added (bypassing the max off limit)</td>
+</tr>
+<tr>
+<td><strong>overrideLockedDateRequired</strong></td>
+<td>Whether the holiday can be force-added (overriding any locked dates)</td>
+</tr>
+</tbody></table>
+<h2 id='update-action-a-holiday'>Update (action) a Holiday</h2>
+<blockquote>
+<p>Approve a pending holiday request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://app.timetastic.co.uk/api/holidays/1?holidayUpdateAction=0'</span> 
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span> 
+  -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+<blockquote>
+<p>Decline a pending holiday request </p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://app.timetastic.co.uk/api/holidays/1?holidayUpdateAction=1'</span> 
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span> 
+  -H <span class="s1">'Content-Type: application/json'</span>
+  --data <span class="s1">$'{"reason": "Sorry, you'</span>re needed <span class="k">in </span>the office.<span class="s2">"}'
+</span></code></pre>
+<p><code>POST http://api.timetastic.co.uk/api/holidays/&lt;ID&gt;</code></p>
+
+<p>Updates a holiday - use this to action a holiday - approve, decline or cancel. </p>
+
+<aside class="warning">You can't update details about an existing holiday - for example changing the holiday request dates.</aside>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Parameter Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Yes</td>
+<td>The ID of the holiday to retrieve</td>
+</tr>
+<tr>
+<td>holidayUpdateAction</td>
+<td>query</td>
+<td>Yes</td>
+<td>The action you want to perform:<br><code>0</code> - Approve<br><code>1</code> - Decline<br><code>2</code> - Delete</td>
+</tr>
+<tr>
+<td>actionModel</td>
+<td>body</td>
+<td>No</td>
+<td>Additional options - see below.</td>
+</tr>
+</tbody></table>
+
+<p>You can pass an optional JSON model in the body of the request to set additional options:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reason</td>
+<td>String</td>
+<td>A reason for declining a request</td>
+</tr>
+<tr>
+<td>suppressEmails</td>
+<td>Bool</td>
+<td>If set, no emails will be sent to the holiday requestee to notify them about the update.</td>
+</tr>
+</tbody></table>
+<h3 id='holiday-action-response'>Holiday Action Response</h3>
+<p>You&#39;ll get a JSON response from the server to let you know the status:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>approvalResult</td>
+<td>The result of the action - one of: <code>[&#39;Success&#39;, &#39;AlreadyActioned&#39;, &#39;DoesntExist&#39;, &#39;UnknownError&#39;, &#39;NotAllowed&#39;]</code></td>
+</tr>
+<tr>
+<td>message</td>
+<td>Any additional message about the response.</td>
+</tr>
+</tbody></table>
+<h1 id='users'>Users</h1><h2 id='user-detail'>User Detail</h2>
+<blockquote>
+<p>A typical user response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roberts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@example.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bossOfDepartments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">10</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://timetasticwebjobsuk.blob.core.windows.net/avatars/u146599.png?v=29"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceRemaining"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasLoggedOn"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"approverId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deptBossId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148346</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1977-02-07T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-04T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasPublicHolidays"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userInitials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A user response from the API contains the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Id</strong></td>
+<td>The unique <code>Id</code> for this user</td>
+</tr>
+<tr>
+<td><strong>firstname</strong></td>
+<td>The user&#39;s firstname</td>
+</tr>
+<tr>
+<td><strong>surname</strong></td>
+<td>The user&#39;s surname</td>
+</tr>
+<tr>
+<td><strong>email</strong></td>
+<td>The user&#39;s email.</td>
+</tr>
+<tr>
+<td><strong>admin</strong></td>
+<td>Whether this user is an admin</td>
+</tr>
+<tr>
+<td><strong>organisationId</strong></td>
+<td>The organisation Id of this user</td>
+</tr>
+<tr>
+<td><strong>departmentId</strong></td>
+<td>The department Id of this user</td>
+</tr>
+<tr>
+<td><strong>allowanceUnit</strong></td>
+<td>The allowance unit for the user - <code>Days</code> or <code>Hours</code>.</td>
+</tr>
+<tr>
+<td><strong>bossOfDepartments</strong></td>
+<td>A comma-separated list of department ids that this user is a boss of.</td>
+</tr>
+<tr>
+<td><strong>endDate</strong></td>
+<td>If archived, when the user left the company</td>
+</tr>
+<tr>
+<td><strong>departmentName</strong></td>
+<td>The name of the department this user belongs to</td>
+</tr>
+<tr>
+<td><strong>gravatar</strong></td>
+<td>The URL of the avatar/gravatar resource for this user</td>
+</tr>
+<tr>
+<td><strong>allowanceRemaining</strong></td>
+<td>The allowance remaining for this user, for the current year</td>
+</tr>
+<tr>
+<td><strong>hasLoggedOn</strong></td>
+<td>Whether this user has logged on</td>
+</tr>
+<tr>
+<td><strong>isArchived</strong></td>
+<td>Whether this user is archived</td>
+</tr>
+<tr>
+<td><strong>approverId</strong></td>
+<td>If the user has a specific approver set, this is the Id of that user</td>
+</tr>
+<tr>
+<td><strong>deptBossId</strong></td>
+<td>The Id of the user who is the boss of the department this user belongs to</td>
+</tr>
+<tr>
+<td><strong>birthday</strong></td>
+<td>The birthday of this user</td>
+</tr>
+<tr>
+<td><strong>startDate</strong></td>
+<td>The start date for this user.</td>
+</tr>
+<tr>
+<td><strong>hasPublicHolidays</strong></td>
+<td>If this user has public holidays</td>
+</tr>
+<tr>
+<td><strong>userInitials</strong></td>
+<td>The user initials</td>
+</tr>
+<tr>
+<td><strong>countryCode</strong></td>
+<td>The country code of the country this user is assigned to (for public holidays)</td>
+</tr>
+<tr>
+<td><strong>currentYearAllowance</strong></td>
+<td>The allowance for this user, for the current leaveyear</td>
+</tr>
+<tr>
+<td><strong>nextYearAllowance</strong></td>
+<td>The alloawnce for this user, for the next leave year</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-users'>List all Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>or to filter for a specific department:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/users?departmentId=10
+  -H "</span>Authorization: Bearer YOUR_TOKEN<span class="s2">"
+</span></code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roberts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@example.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bossOfDepartments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">10</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://timetasticwebjobsuk.blob.core.windows.net/avatars/u146599.png?v=29"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceRemaining"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasLoggedOn"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"approverId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deptBossId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148346</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1977-02-07T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-04T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasPublicHolidays"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userInitials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="w">
+  </span><span class="p">},</span><span class="w">   
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>List your users, filtered as per your query parameters.</p>
+
+<p><code>GET http://app.timetastic.co.uk/api/users</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<p>Append these query paramters to your request to filter your users.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>departmentId</strong></td>
+<td>empty</td>
+<td>If set, only include users within that department</td>
+</tr>
+<tr>
+<td><strong>includeArchivedUsers</strong></td>
+<td>empty</td>
+<td>If set, archived users are included in the results.</td>
+</tr>
+<tr>
+<td><strong>onlyShowArchivedUsers</strong></td>
+<td>empty</td>
+<td>If set, ONLY archived users are included in the results.</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-user'>Get a Specific User</h2>
+<p><code>GET https://app.timetastic.co.uk/api/users/&lt;ID&gt;</code></p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/users/1"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
+</span><span class="s2">"workingDays"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dayOfWeek"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fromTimeAm"</span><span class="p">:</span><span class="w"> </span><span class="mi">540</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toTimeAm"</span><span class="p">:</span><span class="w"> </span><span class="mi">720</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fromTimePm"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toTimePm"</span><span class="p">:</span><span class="w"> </span><span class="mi">1020</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workingAm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workingPm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dayOfWeek"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tuesday"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fromTimeAm"</span><span class="p">:</span><span class="w"> </span><span class="mi">540</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toTimeAm"</span><span class="p">:</span><span class="w"> </span><span class="mi">720</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fromTimePm"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toTimePm"</span><span class="p">:</span><span class="w"> </span><span class="mi">1020</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workingAm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workingPm"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"allowances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"allowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remaining"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"used"</span><span class="p">:</span><span class="w"> </span><span class="mf">-7.5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"allowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remaining"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"used"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">  
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roberts"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@example.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Days"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bossOfDepartments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">10</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departmentName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://timetasticwebjobsuk.blob.core.windows.net/avatars/u146599.png?v=29"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allowanceRemaining"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasLoggedOn"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isArchived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"approverId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deptBossId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148346</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1977-02-07T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-04T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasPublicHolidays"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userInitials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextYearAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>Retrieves a specific user. In addition to the user detail, we return their work schedule, and their allowances.</p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -429,65 +1239,468 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>The ID of the user to retrieve</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h3 id='work-schedule-response'>Work schedule response</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td><strong>dayOfWeek</strong></td>
+<td>String</td>
+<td>The day of the week (e.g. Monday, Tuesday..)</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td><strong>fromTimeAm</strong></td>
+<td>Integer</td>
+<td>The AM from time, expressed as minutes since midnight</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td><strong>toTimeAm</strong></td>
+<td>Integer</td>
+<td>The AM to time, expressed as minutes since midnight</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td><strong>fromTimePm</strong></td>
+<td>Integer</td>
+<td>The PM from time, expressed as minutes since midnight</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td><strong>toTimePm</strong></td>
+<td>Integer</td>
+<td>The PM to time, expressed as minutes since midnight</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td><strong>workingAm</strong></td>
+<td>Boolean</td>
+<td>Whether the user is working AM</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td><strong>workingPm</strong></td>
+<td>Boolean</td>
+<td>Whether the user is working PM</td>
+</tr>
+</tbody></table>
+<h3 id='allowance-response'>Allowance response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>year</strong></td>
+<td>Integer</td>
+<td>The year (taking into account the organisation start date)</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td><strong>allowance</strong></td>
+<td>Number</td>
+<td>The starting allowance, including any days in lieu</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td><strong>remaining</strong></td>
+<td>Number</td>
+<td>The remaining amount</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td><strong>used</strong></td>
+<td>Number</td>
+<td>The used amount</td>
+</tr>
+</tbody></table>
+<h1 id='departments'>Departments</h1><h2 id='department-detail'>Department Detail</h2>
+<blockquote>
+<p>A typical department response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bossId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"givePublicHolidays"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxOff"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankHolidaySetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A departments response from the API contains the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Id</strong></td>
+<td>The unique <code>Id</code> for this department</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td><strong>organisationId</strong></td>
+<td>The organisation Id of this department</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>The department&#39;s name</td>
+</tr>
+<tr>
+<td><strong>bossId</strong></td>
+<td>The department&#39;s boss</td>
+</tr>
+<tr>
+<td><strong>createdAt</strong></td>
+<td>When the department was created</td>
+</tr>
+<tr>
+<td><strong>updatedAt</strong></td>
+<td>When the department was last updated</td>
+</tr>
+<tr>
+<td><strong>givePublicHolidays</strong></td>
+<td>OBSOLETE - will be removed</td>
+</tr>
+<tr>
+<td><strong>archived</strong></td>
+<td>Whether the department is archived (deleted)</td>
+</tr>
+<tr>
+<td><strong>countryCode</strong></td>
+<td>OBSOLTEE - will be removed</td>
+</tr>
+<tr>
+<td><strong>userCount</strong></td>
+<td>User count</td>
+</tr>
+<tr>
+<td><strong>currentAllowance</strong></td>
+<td>The department allowance for the current leave year</td>
+</tr>
+<tr>
+<td><strong>nextAllowance</strong></td>
+<td>The department allowance for the next leave year</td>
+</tr>
+<tr>
+<td><strong>allowanceRemaining</strong></td>
+<td>The allowance remaining for this department, for the current year</td>
+</tr>
+<tr>
+<td><strong>maxOff</strong></td>
+<td>The maximum number of staff allowed off at any one time</td>
+</tr>
+<tr>
+<td><strong>bankHolidaySetId</strong></td>
+<td>OBSOLETE - will be removed</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-departments'>List all Departments</h2>
+<p><code>GET https://app.timetastic.co.uk/api/departments</code></p>
+
+<p>Lists all the departments at your organisation</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/departments"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bossId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"givePublicHolidays"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nextAllowance"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxOff"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankHolidaySetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">   
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-a-specific-department'>Get a Specific Department</h2>
+<p>Get&#39;s a specific department.</p>
+
+<p><code>GET https://app.timetastic.co.uk/api/departments/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the department to retrieve</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/departments/1"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre><h1 id='leave-types'>Leave Types</h1><h2 id='department-detail-2'>Department Detail</h2>
+<blockquote>
+<p>A typical leave type response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deducted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requiresApproval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-21T10:25:44"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-31T09:50:20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6699cc"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A Leave Types response from the API contains the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Id</strong></td>
+<td>The unique <code>Id</code> for this leave type</td>
+</tr>
+<tr>
+<td><strong>organisationId</strong></td>
+<td>The organisation Id of this leave type</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>The leave type&#39;s name</td>
+</tr>
+<tr>
+<td><strong>deducted</strong></td>
+<td>Whether this leave type deducts from the user allowance</td>
+</tr>
+<tr>
+<td><strong>requiresApproval</strong></td>
+<td>Whether this leave type requires approval</td>
+</tr>
+<tr>
+<td><strong>active</strong></td>
+<td>OBSOLETE - will be removed</td>
+</tr>
+<tr>
+<td><strong>createdAt</strong></td>
+<td>When the leave type was created</td>
+</tr>
+<tr>
+<td><strong>updatedAt</strong></td>
+<td>When the leave type was last updated</td>
+</tr>
+<tr>
+<td><strong>color</strong></td>
+<td>The color of the leave type when used in Timetastic</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-leave-types'>List all Leave Types</h2>
+<p><code>GET https://app.timetastic.co.uk/api/leavetypes</code></p>
+
+<p>Lists all the Leave Types at your organisation</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/leavetypes"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deducted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requiresApproval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-21T10:25:44"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-31T09:50:20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6699cc"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-a-specific-leave-type'>Get a Specific Leave Type</h2>
+<p>Gets a specific leave type.</p>
+
+<p><code>GET https://app.timetastic.co.uk/api/leavetypes/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the leave type to retrieve</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/leavetypes/1"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre><h1 id='public-holidays'>Public Holidays</h1><h2 id='public-holiday-detail'>Public Holiday Detail</h2>
+<blockquote>
+<p>A typical public holiday response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9591352</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Christmas Day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-12-25T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-30T10:40:14"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-20T10:31:53"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankHolidaySetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A user response from the API contains the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Id</strong></td>
+<td>The unique <code>Id</code> for this public holiday</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>The name of the holiday</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>The public holiday date</td>
+</tr>
+<tr>
+<td><strong>organisationId</strong></td>
+<td>The organisation Id of this public holiday</td>
+</tr>
+<tr>
+<td><strong>createdAt</strong></td>
+<td>When the public holiday was created</td>
+</tr>
+<tr>
+<td><strong>updatedAt</strong></td>
+<td>When the public holiday was last updated</td>
+</tr>
+<tr>
+<td><strong>countryCode</strong></td>
+<td>The country code associated with this public holiday</td>
+</tr>
+<tr>
+<td><strong>bankHolidaySetId</strong></td>
+<td>The &quot;set&quot; (group of public holidays) that this public holiday belongs to</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-public-holidays'>List all Public Holidays</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/publicholidays"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>or to filter for a specific year:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/publicholidays?year=2018
+  -H "</span>Authorization: Bearer YOUR_TOKEN<span class="s2">"
+</span></code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9591352</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Christmas Day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-12-25T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-30T10:40:14"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-20T10:31:53"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankHolidaySetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">   
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>List your public holidays, filtered as per your query parameters.</p>
+
+<p><code>GET http://app.timetastic.co.uk/api/publicholidays</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<p>Append these query paramters to your request to filter your public holidays.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>countryCode</strong></td>
+<td>empty</td>
+<td>An optional country code to filter the public holidays to</td>
+</tr>
+<tr>
+<td><strong>year</strong></td>
+<td>empty</td>
+<td>An optional year to filter the public holidays to</td>
+</tr>
+<tr>
+<td><strong>userId</strong></td>
+<td>empty</td>
+<td>An optional user id to filter the public holidays to</td>
+</tr>
+<tr>
+<td><strong>bankHolidaySetId</strong></td>
+<td>empty</td>
+<td>An optional bank holiday set to filter the public holidays to</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-public-holiday'>Get a Specific Public Holiday</h2>
+<p><code>GET https://app.timetastic.co.uk/api/publicholidays/&lt;ID&gt;</code></p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.timetastic.co.uk/api/publicholidays/1"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9591352</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Christmas Day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-12-25T00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organisationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-30T10:40:14"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-20T10:31:53"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankHolidaySetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves a specific public holiday.</p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the public holiday to retrieve</td>
 </tr>
 </tbody></table>
 
@@ -495,9 +1708,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
