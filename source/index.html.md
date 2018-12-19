@@ -2,10 +2,8 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
   
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 search: true
@@ -38,7 +36,7 @@ curl "https://app.timetastic.co.uk/api/users"
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `YOUR_TOKEN` with your API key.
 
 # Holidays
 

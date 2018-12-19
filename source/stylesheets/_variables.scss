@@ -57,13 +57,13 @@ $timetastic-table-hover-grey: #eeeeee;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: $timetastic-purple !default;
-$examples-bg: $timetastic-purple-dark !default;
-$code-bg: $timetastic-purple-dark !default;
+$nav-bg: white !default;
+$examples-bg: #1E2224 !default;
+$code-bg: #1E2224 !default;
 $code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: $timetastic-purple-dark !default;
-$nav-active-bg: $timetastic-blue !default;
-$nav-active-parent-bg: $timetastic-purple-dark !default; // parent links of the current section
+$nav-subitem-bg: white !default;
+$nav-active-bg: $timetastic-background !default;
+$nav-active-parent-bg: $timetastic-background !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: $timetastic-purple-dark !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
@@ -78,9 +78,9 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
+$nav-text: $timetastic-grey-medium !default;
+$nav-active-text: $timetastic-blue !default;
+$nav-active-parent-text: $timetastic-blue !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -104,8 +104,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
+  font-family: "Aktiv Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
 }
 
 %header-font {
