@@ -636,5 +636,359 @@ Parameter | Type | Description
 **remaining** | Number | The remaining amount
 **used** | Number | The used amount
 
+# Departments
+
+## Department Detail
+
+> A typical department response:
+
+```json
+  {
+    "id": 1,
+    "organisationId": 10,
+    "name": "Sales",
+    "bossId": 1001,
+    "createdAt": "2010-01-01T00:00:00",
+    "updatedAt": "2010-01-01T00:00:00",
+    "givePublicHolidays": false,
+    "archived": false,
+    "countryCode": "",
+    "userCount": 9,
+    "currentAllowance": 20,
+    "nextAllowance": 35,
+    "maxOff": 2,
+    "bankHolidaySetId": 0
+  }
+```
+
+A departments response from the API contains the following information:
+
+Parameter |  Description
+--------- | ------- | -----------
+**Id** | The unique `Id` for this department
+**organisationId** | The organisation Id of this department
+**name** | The department's name
+**bossId** | The department's boss
+**createdAt** | When the department was created
+**updatedAt** | When the department was last updated
+**givePublicHolidays** | OBSOLETE - will be removed
+**archived** | Whether the department is archived (deleted)
+**countryCode** | OBSOLTEE - will be removed
+**userCount** | User count
+**currentAllowance** | The department allowance for the current leave year
+**nextAllowance** | The department allowance for the next leave year
+**allowanceRemaining** | The allowance remaining for this department, for the current year
+**maxOff** | The maximum number of staff allowed off at any one time
+**bankHolidaySetId** | OBSOLETE - will be removed
+
+## List all Departments
+
+`GET https://app.timetastic.co.uk/api/departments`
+
+
+Lists all the departments at your organisation
+
+```shell
+curl "https://app.timetastic.co.uk/api/departments"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "organisationId": 10,
+    "name": "Sales",
+    "bossId": 1001,
+    "createdAt": "2010-01-01T00:00:00",
+    "updatedAt": "2010-01-01T00:00:00",
+    "givePublicHolidays": false,
+    "archived": false,
+    "countryCode": "",
+    "userCount": 9,
+    "currentAllowance": 20,
+    "nextAllowance": 35,
+    "maxOff": 2,
+    "bankHolidaySetId": 0
+  },   
+  ...
+}
+```
+
+## Get a Specific Department
+
+Get's a specific department.
+
+`GET https://app.timetastic.co.uk/api/departments/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the department to retrieve
+
+```shell
+curl "https://app.timetastic.co.uk/api/departments/1"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+# Leave Types
+
+## Department Detail
+
+> A typical leave type response:
+
+```json
+  {
+    "id": 100,
+    "name": "Annual Leave",
+    "organisationId": 1,
+    "deducted": true,
+    "requiresApproval": true,
+    "active": true,
+    "createdAt": "2016-03-21T10:25:44",
+    "updatedAt": "2018-07-31T09:50:20",
+    "color": "#6699cc"
+  }
+```
+
+A Leave Types response from the API contains the following information:
+
+Parameter |  Description
+--------- | ------- | -----------
+**Id** | The unique `Id` for this leave type
+**organisationId** | The organisation Id of this leave type
+**name** | The leave type's name
+**deducted** | Whether this leave type deducts from the user allowance
+**requiresApproval** | Whether this leave type requires approval
+**active** | OBSOLETE - will be removed
+**createdAt** | When the leave type was created
+**updatedAt** | When the leave type was last updated
+**color** | The color of the leave type when used in Timetastic
+
+## List all Leave Types
+
+`GET https://app.timetastic.co.uk/api/leavetypes`
+
+Lists all the Leave Types at your organisation
+
+```shell
+curl "https://app.timetastic.co.uk/api/leavetypes"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 100,
+    "name": "Annual Leave",
+    "organisationId": 1,
+    "deducted": true,
+    "requiresApproval": true,
+    "active": true,
+    "createdAt": "2016-03-21T10:25:44",
+    "updatedAt": "2018-07-31T09:50:20",
+    "color": "#6699cc"
+  },
+  ...
+}
+```
+
+## Get a Specific Leave Type
+
+Gets a specific leave type.
+
+`GET https://app.timetastic.co.uk/api/leavetypes/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the leave type to retrieve
+
+```shell
+curl "https://app.timetastic.co.uk/api/leavetypes/1"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+# Public Holidays
+
+## Public Holiday Detail
+
+> A typical public holiday response:
+
+```json
+  {
+    "id": 9591352,
+    "name": "Christmas Day",
+    "date": "2012-12-25T00:00:00",
+    "organisationId": 100,
+    "createdAt": "2014-10-30T10:40:14",
+    "updatedAt": "2015-07-20T10:31:53",
+    "countryCode": "GB",
+    "bankHolidaySetId": 1
+  }
+```
+
+A user response from the API contains the following information:
+
+Parameter |  Description
+--------- | ------- | -----------
+**Id** | The unique `Id` for this public holiday
+**name** | The name of the holiday
+**date** | The public holiday date
+**organisationId** | The organisation Id of this public holiday
+**createdAt** | When the public holiday was created
+**updatedAt** | When the public holiday was last updated
+**countryCode** | The country code associated with this public holiday
+**bankHolidaySetId** | The "set" (group of public holidays) that this public holiday belongs to
+
+
+## List all Public Holidays
+
+```shell
+curl "https://app.timetastic.co.uk/api/publicholidays"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> or to filter for a specific year:
+
+```shell
+curl "https://app.timetastic.co.uk/api/publicholidays?year=2018
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 9591352,
+    "name": "Christmas Day",
+    "date": "2012-12-25T00:00:00",
+    "organisationId": 100,
+    "createdAt": "2014-10-30T10:40:14",
+    "updatedAt": "2015-07-20T10:31:53",
+    "countryCode": "GB",
+    "bankHolidaySetId": 1
+  },   
+  ...
+}
+```
+
+List your public holidays, filtered as per your query parameters.
+
+`GET http://app.timetastic.co.uk/api/publicholidays`
+
+### Query Parameters
+
+Append these query paramters to your request to filter your public holidays.
+
+Parameter | Default | Description
+--------- | ------- | -----------
+**countryCode** | empty | An optional country code to filter the public holidays to
+**year** | empty | An optional year to filter the public holidays to
+**userId** | empty | An optional user id to filter the public holidays to
+**bankHolidaySetId** | empty | An optional bank holiday set to filter the public holidays to
+
+## Get a Specific Public Holiday
+
+`GET https://app.timetastic.co.uk/api/publicholidays/<ID>`
+
+```shell
+curl "https://app.timetastic.co.uk/api/publicholidays/1"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+  {
+    "id": 9591352,
+    "name": "Christmas Day",
+    "date": "2012-12-25T00:00:00",
+    "organisationId": 100,
+    "createdAt": "2014-10-30T10:40:14",
+    "updatedAt": "2015-07-20T10:31:53",
+    "countryCode": "GB",
+    "bankHolidaySetId": 1
+  }
+```
+
+Retrieves a specific public holiday.
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the public holiday to retrieve
+
+# Organisation
+
+## Organisation Detail
+
+> A typical organisation response:
+
+```json
+{
+  "id": 1,
+  "name": "Timetastic Ltd",
+  "setupCompleted": true,
+  "createdAt": "2014-10-30T10:40:15",
+  "updatedAt": "2018-11-21T14:40:56",
+  "country": "GB",
+  "vatNumber": "VAT1",
+  "stripeId": "cus_6PeLbOQB6slUcS",
+  "billingEmail": "hello@timetastic.co.uk",
+  "billingEmail2": null,
+  "archived": false,
+  "billingLock": false,
+  "paymentExpiring": false,
+  "startBilling": "2020-01-01",
+  "lastBill": "2015-02-28",
+  "nextBill": "2020-01-01",
+  "freeUserCount": 3,
+  "systemEmail": null,
+  "costPerUser": 0.5,
+  "currency": "gbp",
+  "yearStart": 10,
+  "linkedWithGoogle": false,
+  "slackBotAccessToken": null,
+  "slackBotUserId": null,
+  "slackLastSync": null,
+  "hasSlackBotIntegration": false,
+  "yearStartOrg": 10,
+  "freeAgentContactId": "7147081",
+  "billingInProgress": false,
+  "carryForwardHours": 1,
+  "carryForwardDays": 4,
+  "billingGracePeriodStart": null,
+  "billingGracePeriodSecondBillAttemptDue": null,
+  "billingGracePeriodGiveUpAndLockDue": null,
+  "carryForwardSetup": true,
+  "privacyMode": true,
+  "timeZone": "GMT Standard Time",
+  "vatNumberUpdated": "2018-10-25T09:03:08",
+  "inGracePeriod": false,
+  "billingEmails": "hello@timetastic.co.uk",
+  "currentYear": 2018
+}```
+
+A user response from the API contains the following information:
+
+Parameter |  Description
+--------- | ------- | -----------
+**Id** | The unique `Id` for this public holiday
+**name** | The name of the holiday
+**date** | The public holiday date
+**organisationId** | The organisation Id of this public holiday
+**createdAt** | When the public holiday was created
+**updatedAt** | When the public holiday was last updated
+**countryCode** | The country code associated with this public holiday
+**bankHolidaySetId** | The "set" (group of public holidays) that this public holiday belongs to
 
 
