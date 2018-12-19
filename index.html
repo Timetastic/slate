@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,9 +210,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -305,7 +302,6 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -334,7 +330,7 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>YOUR_TOKEN</code> with your API key.</p>
 </blockquote>
 <h1 id='holidays'>Holidays</h1>
 <p>Using the API, you can query for holidays in Timetastic. You can also use the API to update (approve or decline) holidays, and to request new time off.</p>
@@ -1706,9 +1702,6 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-          </div>
       </div>
     </div>
   </body>
