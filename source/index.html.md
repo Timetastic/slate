@@ -31,7 +31,7 @@ Content: API calls quota exceeded! maximum admitted 5 per 1s.
 
 ```html
 X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
-X-Rate-Limit-Remaining: number of request remaining 
+X-Rate-Limit-Remaining: number of requests remaining 
 X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
 ```
 
@@ -681,15 +681,15 @@ Parameter |  Description
 **bossId** | The department's boss
 **createdAt** | When the department was created
 **updatedAt** | When the department was last updated
-**givePublicHolidays** | OBSOLETE - will be removed
+~~**givePublicHolidays**~~ | OBSOLETE - will be removed
 **archived** | Whether the department is archived (deleted)
-**countryCode** | OBSOLTEE - will be removed
+~~**countryCode**~~ | OBSOLETE - will be removed
 **userCount** | User count
 **currentAllowance** | The department allowance for the current leave year
 **nextAllowance** | The department allowance for the next leave year
 **allowanceRemaining** | The allowance remaining for this department, for the current year
 **maxOff** | The maximum number of staff allowed off at any one time
-**bankHolidaySetId** | OBSOLETE - will be removed
+~~**bankHolidaySetId**~~ | OBSOLETE - will be removed
 
 ## List all Departments
 
@@ -773,7 +773,7 @@ Parameter |  Description
 **name** | The leave type's name
 **deducted** | Whether this leave type deducts from the user allowance
 **requiresApproval** | Whether this leave type requires approval
-**active** | OBSOLETE - will be removed
+~~**active**~~ | OBSOLETE - will be removed
 **createdAt** | When the leave type was created
 **updatedAt** | When the leave type was last updated
 **color** | The color of the leave type when used in Timetastic
