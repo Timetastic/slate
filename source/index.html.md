@@ -3,8 +3,8 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   
-toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+# toc_footers:
+#   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 search: true
 ---
@@ -12,12 +12,28 @@ search: true
 # Introduction
 
 Welcome to the Timetastic API! Use the Timetastic API to feed Timetastic into your internal apps and custom workflows. 
-To get started, read the section below on Authentication, and then rate limiting, then get stuck in.
+To get started, read the section below on Authentication, then rate limiting and get stuck in.
 
 # Rate Limiting
 
-To keep things running smoothly, there is a rate-limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a 429 response code.
+To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a `429` response code.
 For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. 
+
+> Rate limiting responses look like this
+
+```html
+Status Code: 429
+Retry-After: 58
+Content: API calls quota exceeded! maximum admitted 5 per 1s.
+```
+
+> For calls that don't get rate limited, you can monitor your usage with the following headers:
+
+```html
+X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
+X-Rate-Limit-Remaining: number of request remaining 
+X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
+```
 
 # Authentication
 
@@ -84,8 +100,8 @@ Parameter |  Description
 **endType** | Used to define the time the holiday ends: <br>**Morning** - Ends after the morning of the last day (lunchtime) <br>**Afternoon** - Ends at the end of the last day (whole day booked) <br>**Hours** - This is an hourly booking, use the time in the endDate
 **userId** | The `Id` of the user this leave is for
 **userName** | The full name of the user this leave is for
-**requestedById** | The `id` of the user who requested this leave
-**leaveTypeId** | The `id` of the leave type associated with this leave
+**requestedById** | The `Id` of the user who requested this leave
+**leaveTypeId** | The `Id` of the leave type associated with this leave
 **duration** | The full duration of this leave, check `bookingUnit` to determine if it's hours or days
 **deduction** | The deduction from the users allowance, check `bookingUnit` to determine if it's hours or days
 **actionerId** | If the holiday has been actioned (approved or declined), the `Id` of the user who did this

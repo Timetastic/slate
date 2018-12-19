@@ -76,6 +76,7 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    padding: 5px;
   }
 
   &>.search {
@@ -351,9 +352,9 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    border-top: 1px solid #ddd;
+    // border-bottom: 1px solid #ccc;
+    // background-color: #fdfdfd;
   }
 
   h1:first-child, div:first-child + h1 {

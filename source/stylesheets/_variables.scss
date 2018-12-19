@@ -27,6 +27,7 @@ $timetastic-purple: #862C50;
 $timetastic-purple-light: #A4617C;
 $timetastic-purple-medium: #8D4260;
 $timetastic-purple-dark: #370a1c;
+$timetastic-purple-bg: #250513;
 
 $timetastic-blue: #459FF3;
 $timetastic-blue-light: #66cccc;
@@ -42,6 +43,7 @@ $timetastic-highlight-yellow: #FEFEF1;
 
 $timetastic-green: #22aa66;
 $timetastic-green-light: rgb(102, 204, 153);
+$timetastic-green-lighter: #93e9be;
 
 $timetastic-gold: #ffdf00;
 
@@ -57,11 +59,16 @@ $timetastic-table-hover-grey: #eeeeee;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: white !default;
-$examples-bg: #1E2224 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: white !default;
+// $nav-bg: white !default;
+$nav-bg: $timetastic-lightgrey !default;
+// $examples-bg: #1E2224 !default;
+$examples-bg: $timetastic-purple-bg !default;
+// $code-bg: #1E2224 !default;
+$code-bg: $timetastic-purple-bg !default;
+// $code-annotation-bg: #191D1F !default;
+$code-annotation-bg: $timetastic-purple-bg !default;
+// $nav-subitem-bg: white !default;
+$nav-subitem-bg: $timetastic-lightgrey !default;
 $nav-active-bg: $timetastic-background !default;
 $nav-active-parent-bg: $timetastic-background !default; // parent links of the current section
 $lang-select-border: #000 !default;
@@ -71,7 +78,7 @@ $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse i
 $main-bg: $timetastic-background !default;
 $aside-notice-bg: $timetastic-blue-medium !default;
 $aside-warning-bg: $timetastic-red-medium !default;
-$aside-success-bg: $timetastic-green !default;
+$aside-success-bg: $timetastic-green-lighter !default;
 $search-notice-bg: #c97a7e !default;
 
 
