@@ -11,11 +11,14 @@ search: false
 
 # Introduction
 
-Use the Timetastic API to integrate Timetastic into your internal apps and custom workflows. It's designed to be a predictable and intuitive way to interact with your company's Timetastic account. Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. 
+You can use the Timetastic API to integrate Timetastic into other software applications and custom workflows.
 
-Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
+The API is designed to be a predictable and intuitive way to interact with your company’s Timetastic account.
 
-To get started, read the section below on Authentication, then rate limiting and get stuck in.
+Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
+
+To get started, read the sections below on Authentication and Rate Limiting, then get stuck in.
+
 
 # Rate Limiting
 
