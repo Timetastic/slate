@@ -70,7 +70,7 @@ You can get or renew your API token from Timetastic: [https://app.timetastic.co.
 
 Using the `holidays` endpoint you can query for all types of leave booking in Timetastic. You can also use this endpoint to update (approve or decline) holidays, and to request new time off.
 
-<aside class="success">The API refers to any absence as holidays.</aside>
+<aside class="success"><strong>Holidays</strong> in the context of this API actually refers to any absence. We’re sorry if this confuses but the API was first built 4 years ago and to update all the endpoints would risk a large amount of breaking changes.</aside>
 
 ## Holiday Detail
 

@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import 'timetastic';
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -110,9 +111,6 @@ html, body {
     height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    transition-property: height, margin;
-    transition-duration: 180ms;
-    transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
     &.visible {
       height: 30%;
@@ -147,9 +145,6 @@ html, body {
 
   li {
     color: $nav-text;
-    transition-property: background;
-    transition-timing-function: linear;
-    transition-duration: 200ms;
     font-weight: normal;
     font-size: 15px;
     padding-bottom: 5px;
@@ -208,9 +203,6 @@ html, body {
   text-overflow: ellipsis;
   text-decoration: none;
   color: $nav-text;
-  transition-property: background;
-  transition-timing-function: linear;
-  transition-duration: 130ms;
 }
 
 // button to show navigation on mobile devices
