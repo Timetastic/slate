@@ -216,6 +216,11 @@
           </li>
           <li>
             <a href="#rate-limiting" class="toc-h1 toc-link" data-title="Rate Limiting">Rate Limiting</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#monitoring-usage" class="toc-h2 toc-link" data-title="Monitoring usage">Monitoring usage</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -302,12 +307,12 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Timetastic API! Use the Timetastic API to feed Timetastic into your internal apps and custom workflows. 
-To get started, read the section below on Authentication, then rate limiting and get stuck in.</p>
-<h1 id='rate-limiting'>Rate Limiting</h1>
-<p>To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a <code>429</code> response code.
-For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
+<p>Use the Timetastic API to integrate Timetastic into your internal apps and custom workflows. It&#39;s designed to be a predictable and intuitive way to interact with your company&#39;s Timetastic account. Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. </p>
 
+<p>Be sure to keep an eye on our <a href="https://twitter.com/search?f=tweets&amp;vertical=default&amp;q=timetastic%20%23changelog&amp;src=typd">Twitter Changelog</a> to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.</p>
+
+<p>To get started, read the section below on Authentication, then rate limiting and get stuck in.</p>
+<h1 id='rate-limiting'>Rate Limiting</h1>
 <blockquote>
 <p>Rate limiting responses look like this</p>
 </blockquote>
@@ -315,30 +320,33 @@ For successful calls, we set response headers containing information about the r
 Retry-After: 58
 Content: API calls quota exceeded! maximum admitted 5 per 1s.
 </code></pre>
+<p>To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a <code>429</code> response code.
+For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
+<h3 id='monitoring-usage'>Monitoring usage</h3>
+<p>For calls that don&#39;t get rate limited, you can monitor your usage with the following headers</p>
+
+<p><code>X-Rate-Limit-Limit</code> The rate limit period (eg. 1m, 12h, 1d)</p>
+
+<p><code>X-Rate-Limit-Remaining</code> Number of requests remaining </p>
+
+<p><code>X-Rate-Limit-Reset</code> UTC date time (ISO 8601) when the limit resets</p>
+<h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>For calls that don&#39;t get rate limited, you can monitor your usage with the following headers:</p>
-</blockquote>
-<pre class="highlight html tab-html"><code>X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
-X-Rate-Limit-Remaining: number of requests remaining 
-X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
-</code></pre><h1 id='authentication'>Authentication</h1>
-<p>To use the API, you need an API token.</p>
-
-<p>The token identifies your user, so you&#39;ll have the same permissions as your user account
-Only admin users have access to an API token</p>
-
-<p>Your API token is: [todo]</p>
-
-<blockquote>
-<p>To authorize, use this code:</p>
+<p>To authorize, use this code</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_TOKEN"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>YOUR_TOKEN</code> with your API key.</p>
+<p>Make sure to replace <code>YOUR_TOKEN</code> with your API key. </p>
 </blockquote>
+
+<p>To use the API, you need an API token. Only admin users have access to an API token.</p>
+
+<p>You can get or renew your API token from Timetastic: <a href="https://app.timetastic.co.uk/api">https://app.timetastic.co.uk/api</a></p>
+
+<aside class="notice">The token identifies your user, so you'll have the same permissions as your user account.</aside>
 <h1 id='holidays'>Holidays</h1>
 <p>Using the API, you can query for holidays in Timetastic. You can also use the API to update (approve or decline) holidays, and to request new time off.</p>
 
