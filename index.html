@@ -307,11 +307,13 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Use the Timetastic API to integrate Timetastic into your internal apps and custom workflows. It&#39;s designed to be a predictable and intuitive way to interact with your company&#39;s Timetastic account. Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. </p>
+<p>You can use the Timetastic API to integrate Timetastic into other software applications and custom workflows.</p>
 
-<p>Be sure to keep an eye on our <a href="https://twitter.com/search?f=tweets&amp;vertical=default&amp;q=timetastic%20%23changelog&amp;src=typd">Twitter Changelog</a> to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.</p>
+<p>The API is designed to be a predictable and intuitive way to interact with your company’s Timetastic account.</p>
 
-<p>To get started, read the section below on Authentication, then rate limiting and get stuck in.</p>
+<p>Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. Be sure to keep an eye on our <a href="https://twitter.com/search?f=tweets&amp;vertical=default&amp;q=timetastic%20%23changelog&amp;src=typd">Twitter Changelog</a> to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.</p>
+
+<p>To get started, read the sections below on Authentication and Rate Limiting, then get stuck in.</p>
 <h1 id='rate-limiting'>Rate Limiting</h1>
 <blockquote>
 <p>Rate limiting responses look like this</p>
@@ -320,8 +322,11 @@
 Retry-After: 58
 Content: API calls quota exceeded! maximum admitted 5 per 1s.
 </code></pre>
-<p>To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a <code>429</code> response code.
-For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
+<p>To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. </p>
+
+<p>If you exceed the limit, the request will fail with a <code>429</code> response code.</p>
+
+<p>For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. </p>
 <h3 id='monitoring-usage'>Monitoring usage</h3>
 <p>For calls that don&#39;t get rate limited, you can monitor your usage with the following headers</p>
 
@@ -348,7 +353,7 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
 
 <aside class="notice">The token identifies your user, so you'll have the same permissions as your user account.</aside>
 <h1 id='holidays'>Holidays</h1>
-<p>Using the API, you can query for holidays in Timetastic. You can also use the API to update (approve or decline) holidays, and to request new time off.</p>
+<p>Using the <code>holidays</code> endpoint you can query for all types of leave booking in Timetastic. You can also use this endpoint to update (approve or decline) holidays, and to request new time off.</p>
 
 <aside class="success">The API refers to any kind of booked time off as holidays.</aside>
 <h2 id='holiday-detail'>Holiday Detail</h2>
@@ -378,7 +383,7 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
           </span><span class="s2">"leaveType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Annual Leave"</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>A holiday response from the API contains the following information:</p>
+<p>A holiday response contains the following information:</p>
 
 <table><thead>
 <tr>
@@ -644,64 +649,67 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
 <p><code>POST http://api.timetastic.co.uk/api/holidays</code></p>
 
 <p>Use this to submit a leave request to Timetastic. You can book for any user in your organisation. 
-Post your holiday request as JSON in the body of the post. </p>
+Post your holiday request as JSON in the body of the request. </p>
 
-<p>First of all, you need to specify <code>from</code> and <code>to</code> dates - these determine the dates for the holiday. If you want from the 1st Jan to the 5th for example, you&#39;d have <code>2018-01-01</code> as the <code>from</code>, and <code>2018-01-05</code> as the <code>to</code>. If you want a booking on just one day, the 2 dates should be set to the same value.
-Next, you need to specify a <code>fromTime</code> and <code>endTime</code>. If you&#39;re booking in days (the default in Timetastic), then your options here are <code>AM</code> or <code>PM</code>. 
+<p>First of all, you need to specify <code>from</code> and <code>to</code> dates - these determine the dates for the holiday. If you want from the 1st Jan to the 5th for example, you&#39;d have <code>2018-01-01</code> as the <code>from</code>, and <code>2018-01-05</code> as the <code>to</code>. </p>
+
+<p>If you want a booking on just one day, both dates should be set to the same value.</p>
+
+<p>Next, you need to specify a <code>fromTime</code> and <code>toTime</code>. If you&#39;re booking in days (the default in Timetastic), then your options here are <code>AM</code> or <code>PM</code>. 
 If you&#39;re booking hourly (only supported if the user has their allowances tracked in hours, or if the leave type is non-deductable), then you need to speciify the time, expressed as the number of minutes since midnight. For example 540 would represent 9:00am.</p>
 
 <p>Some examples:</p>
 
 <table><thead>
 <tr>
-<th>from</th>
-<th>fromTime</th>
-<th>to</th>
-<th>toTime</th>
+<th style="text-align: center">from</th>
+<th style="text-align: right">fromTime</th>
+<th style="text-align: center">to</th>
+<th style="text-align: right">toTime</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>2018-01-01</td>
-<td>AM</td>
-<td>2018-01-02</td>
-<td>PM</td>
-<td>2 full days - the 1st and 2nd Jan</td>
+<td style="text-align: center">2018-01-01 &nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right">AM</td>
+<td style="text-align: center">2018-01-02 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="text-align: right">PM</td>
+<td>2 full days: 1st and 2nd Jan</td>
 </tr>
 <tr>
-<td>2018-01-01</td>
-<td>AM</td>
-<td>2018-01-01</td>
-<td>PM</td>
-<td>1 full day - the 1st Jan.</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">AM</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">PM</td>
+<td>1 full day: 1st Jan</td>
 </tr>
 <tr>
-<td>2018-01-01</td>
-<td>AM</td>
-<td>2018-01-02</td>
-<td>AM</td>
-<td>Half a day, just the morning</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">AM</td>
+<td style="text-align: center">2018-01-02</td>
+<td style="text-align: right">AM</td>
+<td>Half a day: Just the morning</td>
 </tr>
 <tr>
-<td>2018-01-01</td>
-<td>PM</td>
-<td>2018-01-02</td>
-<td>PM</td>
-<td>Half a day, just the afternoon</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">PM</td>
+<td style="text-align: center">2018-01-02</td>
+<td style="text-align: right">PM</td>
+<td>Half a day: Just the afternoon</td>
 </tr>
 <tr>
-<td>2018-01-01</td>
-<td>PM</td>
-<td>2018-01-02</td>
-<td>AM</td>
-<td>The afternoon of the 1st, and the morning of the 2nd</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">PM</td>
+<td style="text-align: center">2018-01-02</td>
+<td style="text-align: right">AM</td>
+<td>The afternoon of the 1st and the morning of the 2nd</td>
 </tr>
 <tr>
-<td>2018-01-01</td>
-<td>540</td>
-<td>2018-01-01</td>
-<td>720</td>
-<td>Hourly bookings, this one is from 9am to noon.</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">540</td>
+<td style="text-align: center">2018-01-01</td>
+<td style="text-align: right">720</td>
+<td>Hourly booking from 9am to noon</td>
 </tr>
 </tbody></table>
 
