@@ -77,6 +77,7 @@ $lang-select-active-bg: $examples-bg !default; // feel free to change this to bl
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: $timetastic-background-light !default;
 $aside-notice-bg: $timetastic-blue-medium !default;
+$aside-notice-fg: #fff;
 $aside-warning-bg: $timetastic-red-medium !default;
 $aside-success-bg: $timetastic-green-lighter !default;
 $search-notice-bg: #c97a7e !default;
@@ -85,7 +86,7 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: $timetastic-grey-medium !default;
+$nav-text: $timetastic-grey-dark !default;
 $nav-active-text: $timetastic-blue !default;
 $nav-active-parent-text: $timetastic-blue !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text

@@ -11,13 +11,13 @@ search: false
 
 # Introduction
 
-Welcome to the Timetastic API! Use the Timetastic API to feed Timetastic into your internal apps and custom workflows. 
+Use the Timetastic API to integrate Timetastic into your internal apps and custom workflows. It's designed to be a predictable and intuitive way to interact with your company's Timetastic account. Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. 
+
+Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
+
 To get started, read the section below on Authentication, then rate limiting and get stuck in.
 
 # Rate Limiting
-
-To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a `429` response code.
-For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. 
 
 > Rate limiting responses look like this
 
@@ -27,24 +27,23 @@ Retry-After: 58
 Content: API calls quota exceeded! maximum admitted 5 per 1s.
 ```
 
-> For calls that don't get rate limited, you can monitor your usage with the following headers:
+To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a `429` response code.
+For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. 
 
-```html
-X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
-X-Rate-Limit-Remaining: number of requests remaining 
-X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
-```
+### Monitoring usage
+
+For calls that don't get rate limited, you can monitor your usage with the following headers
+
+`X-Rate-Limit-Limit` The rate limit period (eg. 1m, 12h, 1d)
+
+`X-Rate-Limit-Remaining` Number of requests remaining 
+
+`X-Rate-Limit-Reset` UTC date time (ISO 8601) when the limit resets
+
 
 # Authentication
 
- To use the API, you need an API token.
-
-The token identifies your user, so you'll have the same permissions as your user account
-Only admin users have access to an API token
-
-Your API token is: [todo]
-
-> To authorize, use this code:
+> To authorize, use this code
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -52,7 +51,15 @@ curl "https://app.timetastic.co.uk/api/users"
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-> Make sure to replace `YOUR_TOKEN` with your API key.
+> Make sure to replace `YOUR_TOKEN` with your API key. 
+
+To use the API, you need an API token. Only admin users have access to an API token.
+
+You can get or renew your API token from Timetastic: [https://app.timetastic.co.uk/api](https://app.timetastic.co.uk/api)
+
+<aside class="notice">The token identifies your user, so you'll have the same permissions as your user account.</aside>
+
+
 
 # Holidays
 

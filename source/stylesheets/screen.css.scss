@@ -76,7 +76,7 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
-    padding: 5px;
+    padding: 25px 25px 5px 13px;
   }
 
   &>.search {
@@ -150,6 +150,9 @@ html, body {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 200ms;
+    font-weight: normal;
+    font-size: 15px;
+    padding-bottom: 5px;
   }
 
   // This is the currently selected ToC entry
@@ -172,7 +175,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .toc-footer {
@@ -424,12 +427,14 @@ html, body {
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      // background-color: lighten($main-bg,4.2%);
+      background-color: darken($main-bg,2.4%);
+
     }
 
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
+    // tr:nth-child(even)>td {
+    //   background-color: lighten($main-bg,2.4%);
+    // }
   }
 
   dt {
@@ -469,6 +474,10 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+
+    &.notice{
+    color: $aside-notice-fg;
+    }
 
     &.warning {
       background-color: $aside-warning-bg;
