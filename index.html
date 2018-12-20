@@ -198,7 +198,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
   <body class="index" data-languages="[]">
@@ -210,10 +210,6 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.svg" class="logo" alt="Logo" />
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
@@ -323,7 +319,7 @@ Content: API calls quota exceeded! maximum admitted 5 per 1s.
 <p>For calls that don&#39;t get rate limited, you can monitor your usage with the following headers:</p>
 </blockquote>
 <pre class="highlight html tab-html"><code>X-Rate-Limit-Limit: the rate limit period (eg. 1m, 12h, 1d)
-X-Rate-Limit-Remaining: number of request remaining 
+X-Rate-Limit-Remaining: number of requests remaining 
 X-Rate-Limit-Reset: UTC date time (ISO 8601) when the limits resets
 </code></pre><h1 id='authentication'>Authentication</h1>
 <p>To use the API, you need an API token.</p>
@@ -1376,7 +1372,7 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 <td>When the department was last updated</td>
 </tr>
 <tr>
-<td><strong>givePublicHolidays</strong></td>
+<td><del><strong>givePublicHolidays</strong></del></td>
 <td>OBSOLETE - will be removed</td>
 </tr>
 <tr>
@@ -1384,8 +1380,8 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 <td>Whether the department is archived (deleted)</td>
 </tr>
 <tr>
-<td><strong>countryCode</strong></td>
-<td>OBSOLTEE - will be removed</td>
+<td><del><strong>countryCode</strong></del></td>
+<td>OBSOLETE - will be removed</td>
 </tr>
 <tr>
 <td><strong>userCount</strong></td>
@@ -1408,7 +1404,7 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 <td>The maximum number of staff allowed off at any one time</td>
 </tr>
 <tr>
-<td><strong>bankHolidaySetId</strong></td>
+<td><del><strong>bankHolidaySetId</strong></del></td>
 <td>OBSOLETE - will be removed</td>
 </tr>
 </tbody></table>
@@ -1504,7 +1500,7 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 <td>Whether this leave type requires approval</td>
 </tr>
 <tr>
-<td><strong>active</strong></td>
+<td><del><strong>active</strong></del></td>
 <td>OBSOLETE - will be removed</td>
 </tr>
 <tr>
