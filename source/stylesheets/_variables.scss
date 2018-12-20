@@ -57,6 +57,7 @@ $timetastic-table-hover-grey: #eeeeee;
 
 
 
+
 // BACKGROUND COLORS
 ////////////////////
 // $nav-bg: white !default;
@@ -76,9 +77,9 @@ $lang-select-bg: $timetastic-purple-dark !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: $timetastic-background-light !default;
-$aside-notice-bg: $timetastic-blue-medium !default;
-$aside-notice-fg: #fff;
-$aside-warning-bg: $timetastic-red-medium !default;
+$aside-notice-bg: #bedced  !default;
+$aside-notice-fg: $timetastic-grey-dark;
+$aside-warning-bg: #ffcdb4 !default;
 $aside-success-bg: $timetastic-green-lighter !default;
 $search-notice-bg: #c97a7e !default;
 
