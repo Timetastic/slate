@@ -30,7 +30,10 @@ Retry-After: 58
 Content: API calls quota exceeded! maximum admitted 5 per 1s.
 ```
 
-To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. If you exceed the limit, the request will fail with a `429` response code.
+To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. 
+
+If you exceed the limit, the request will fail with a `429` response code.
+
 For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. 
 
 ### Monitoring usage
@@ -66,7 +69,7 @@ You can get or renew your API token from Timetastic: [https://app.timetastic.co.
 
 # Holidays
 
-Using the API, you can query for holidays in Timetastic. You can also use the API to update (approve or decline) holidays, and to request new time off.
+Using the `holidays` endpoint you can query for all types of leave booking in Timetastic. You can also use this endpoint to update (approve or decline) holidays, and to request new time off.
 
 <aside class="success">The API refers to any kind of booked time off as holidays.</aside>
 
@@ -99,7 +102,7 @@ Using the API, you can query for holidays in Timetastic. You can also use the AP
       }
 ```
 
-A holiday response from the API contains the following information:
+A holiday response contains the following information:
 
 Parameter |  Description
 --------- | ------- | -----------
@@ -273,22 +276,26 @@ ID | The ID of the holiday to retrieve
 `POST http://api.timetastic.co.uk/api/holidays`
 
 Use this to submit a leave request to Timetastic. You can book for any user in your organisation. 
-Post your holiday request as JSON in the body of the post. 
+Post your holiday request as JSON in the body of the request. 
 
-First of all, you need to specify `from` and `to` dates - these determine the dates for the holiday. If you want from the 1st Jan to the 5th for example, you'd have `2018-01-01` as the `from`, and `2018-01-05` as the `to`. If you want a booking on just one day, the 2 dates should be set to the same value.
-Next, you need to specify a `fromTime` and `endTime`. If you're booking in days (the default in Timetastic), then your options here are `AM` or `PM`. 
+First of all, you need to specify `from` and `to` dates - these determine the dates for the holiday. If you want from the 1st Jan to the 5th for example, you'd have `2018-01-01` as the `from`, and `2018-01-05` as the `to`. 
+
+If you want a booking on just one day, both dates should be set to the same value.
+
+
+Next, you need to specify a `fromTime` and `toTime`. If you're booking in days (the default in Timetastic), then your options here are `AM` or `PM`. 
 If you're booking hourly (only supported if the user has their allowances tracked in hours, or if the leave type is non-deductable), then you need to speciify the time, expressed as the number of minutes since midnight. For example 540 would represent 9:00am.
 
 Some examples:
 
 from | fromTime | to | toTime | Description
----- | -------- | -- | ------ | -----------
-2018-01-01 | AM | 2018-01-02 | PM | 2 full days - the 1st and 2nd Jan
-2018-01-01 | AM | 2018-01-01 | PM | 1 full day - the 1st Jan.
-2018-01-01 | AM | 2018-01-02 | AM | Half a day, just the morning
-2018-01-01 | PM | 2018-01-02 | PM | Half a day, just the afternoon
-2018-01-01 | PM | 2018-01-02 | AM | The afternoon of the 1st, and the morning of the 2nd
-2018-01-01 | 540 | 2018-01-01 | 720 | Hourly bookings, this one is from 9am to noon.
+:------: | ---: | :---: | --------: | -----------
+2018-01-01 &nbsp;&nbsp;&nbsp; | AM | 2018-01-02 &nbsp;&nbsp;&nbsp;&nbsp; | PM | 2 full days: 1st and 2nd Jan
+2018-01-01 | AM | 2018-01-01 | PM | 1 full day: 1st Jan
+2018-01-01 | AM | 2018-01-02 | AM | Half a day: Just the morning
+2018-01-01 | PM | 2018-01-02 | PM | Half a day: Just the afternoon
+2018-01-01 | PM | 2018-01-02 | AM | The afternoon of the 1st and the morning of the 2nd
+2018-01-01 | 540 | 2018-01-01 | 720 | Hourly booking from 9am to noon
 
 > Let's book off the 20th December, for one user, requested as them:
 
