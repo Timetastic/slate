@@ -241,7 +241,7 @@
                     <a href="#request-a-holiday" class="toc-h2 toc-link" data-title="Request a Holiday">Request a Holiday</a>
                   </li>
                   <li>
-                    <a href="#update-action-a-holiday" class="toc-h2 toc-link" data-title="Update (action) a Holiday">Update (action) a Holiday</a>
+                    <a href="#action-a-holiday" class="toc-h2 toc-link" data-title="Action a Holiday">Action a Holiday</a>
                   </li>
               </ul>
           </li>
@@ -355,7 +355,7 @@ curl <span class="s2">"https://app.timetastic.co.uk/api/users"</span>
 <h1 id='holidays'>Holidays</h1>
 <p>Using the <code>holidays</code> endpoint you can query for all types of leave booking in Timetastic. You can also use this endpoint to update (approve or decline) holidays, and to request new time off.</p>
 
-<aside class="success">The API refers to any kind of booked time off as holidays.</aside>
+<aside class="success">The API refers to any absence as holidays.</aside>
 <h2 id='holiday-detail'>Holiday Detail</h2>
 <blockquote>
 <p>A typical holiday response:</p>
@@ -877,7 +877,7 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 <td>Whether the holiday can be force-added (overriding any locked dates)</td>
 </tr>
 </tbody></table>
-<h2 id='update-action-a-holiday'>Update (action) a Holiday</h2>
+<h2 id='action-a-holiday'>Action a Holiday</h2>
 <blockquote>
 <p>Approve a pending holiday request</p>
 </blockquote>
@@ -895,9 +895,7 @@ If you&#39;re booking hourly (only supported if the user has their allowances tr
 </span></code></pre>
 <p><code>POST http://api.timetastic.co.uk/api/holidays/&lt;ID&gt;</code></p>
 
-<p>Updates a holiday - use this to action a holiday - approve, decline or cancel. </p>
-
-<aside class="warning">You can't update details about an existing holiday - for example changing the holiday request dates.</aside>
+<p>Use this to action a holiday - approve, decline or cancel. </p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
