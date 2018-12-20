@@ -376,7 +376,7 @@ Parameter | Description
 **overrideRequired** | Whether the holiday can be force-added (bypassing the max off limit)
 **overrideLockedDateRequired** | Whether the holiday can be force-added (overriding any locked dates)
 
-## Update (action) a Holiday
+## Action a Holiday
 
 > Approve a pending holiday request
 
@@ -397,9 +397,7 @@ curl 'https://app.timetastic.co.uk/api/holidays/1?holidayUpdateAction=1'
 
 `POST http://api.timetastic.co.uk/api/holidays/<ID>`
 
-Updates a holiday - use this to action a holiday - approve, decline or cancel. 
-
-<aside class="warning">You can't update details about an existing holiday - for example changing the holiday request dates.</aside>
+Use this to action a holiday - approve, decline or cancel. 
 
 ### Parameters
 
