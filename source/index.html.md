@@ -11,13 +11,15 @@ search: false
 
 # Introduction
 
+👏 Welcome to the Timetastic API 👏
+
 You can use the Timetastic API to integrate Timetastic into other software applications and custom workflows.
 
 The API is designed to be a predictable and intuitive way to interact with your company’s Timetastic account.
 
-Like Timetastic itself the API is under continuous development so changes and improvements are to be expected. Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
+Like Timetastic itself the API is under continuous development, so changes and improvements are to be expected. Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
 
-To get started, read the sections below on Authentication and Rate Limiting, then get stuck in.
+**Get stuck in:** Read the sections below on Authentication and Rate Limiting, then see what you can do!
 
 
 # Rate Limiting
@@ -32,7 +34,7 @@ Content: API calls quota exceeded! maximum admitted 5 per 1s.
 
 To keep things running smoothly, there is a rate limit of 5 requests per second, per API key. 
 
-If you exceed the limit, the request will fail with a `429` response code.
+If you exceed the limit, you'll get a `429` response code.
 
 For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage. 
 
@@ -128,6 +130,8 @@ Parameter |  Description
 
 
 ## List All Holidays
+
+> List ALL holidays: 
 
 ```shell
 curl "https://app.timetastic.co.uk/api/holidays"
@@ -360,6 +364,9 @@ Parameter | Type | Required | Description
 **override** | Bool | No | If set, any department max-off limits are ignored when making the booking. Defaults to false.
 **overrideLockedDays** | Bool | No | If set, locked dates are ignored when making the booking. Defaults to false.
 **bookAsRequestee** | Bool | No | If set, the request is made as though it were being made by the requestee, instead of the admin user associated with the API key. Use this to ensure the **normal** approvial process happens. Defaults to false.
+
+<aside class="warnging">Getting a <strong>415</strong> response code? It's probably that you're not setting the holiday request properly. Check that it's set as JSON in the body of the request, and make sure you set a request header <strong>Content-Type</strong> set to <strong>application/json</strong></aside>
+
 
 ### Holiday Request Response
 
