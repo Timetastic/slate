@@ -209,7 +209,7 @@ Search for holidays, filtered as per your query parameters.
 
 ### Query Parameters
 
-Append these query paramters to your request to filter your holidays. As a minimum we'd recommend setting a date range filter.
+Append these query parameters to your request to filter your holidays. As a minimum we'd recommend setting a date range filter.
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -227,7 +227,7 @@ Parameter | Default | Description
 
 You are limited to 100 holidays in any response. If your query returns more than this, you'll need to request any additional pages. With every request, you get a sumary as shown in the JSON response in the right-hand column.
 
-By examing this response, you'll be able to determine whether additional requests are needed. The `nextPageLink` will tell you what request to make for the next set of responses.
+By examining this response, you'll be able to determine whether additional requests are needed. The `nextPageLink` will tell you what request to make for the next set of responses.
 
 
 ## Get a Specific Holiday
@@ -287,7 +287,7 @@ If you want a booking on just one day, both dates should be set to the same valu
 
 
 Next, you need to specify a `fromTime` and `toTime`. If you're booking in days (the default in Timetastic), then your options here are `AM` or `PM`. 
-If you're booking hourly (only supported if the user has their allowances tracked in hours, or if the leave type is non-deductable), then you need to speciify the time, expressed as the number of minutes since midnight. For example 540 would represent 9:00am.
+If you're booking hourly (only supported if the user has their allowances tracked in hours, or if the leave type is non-deductible), then you need to specify the time, expressed as the number of minutes since midnight. For example 540 would represent 9:00am.
 
 Some examples:
 
@@ -320,7 +320,7 @@ curl 'https://app.timetastic.co.uk/api/holidays'
               "overrideLockedDays": true}'
 ```
 
-> Assumiung this request was valid, here's the response from the server:
+> Assuming this request was valid, here's the response from the server:
 
 ```JSON
 {
@@ -334,7 +334,7 @@ curl 'https://app.timetastic.co.uk/api/holidays'
 }
 ```
 
-> Or, if you're aleady off:
+> Or, if you're already off:
 
 ```JSON
 {
@@ -363,7 +363,7 @@ Parameter | Type | Required | Description
 **suppressEmails** | Bool | No | If set, this will prevent any leave request emails from being sent when the request is processed. Defaults to false.
 **override** | Bool | No | If set, any department max-off limits are ignored when making the booking. Defaults to false.
 **overrideLockedDays** | Bool | No | If set, locked dates are ignored when making the booking. Defaults to false.
-**bookAsRequestee** | Bool | No | If set, the request is made as though it were being made by the requestee, instead of the admin user associated with the API key. Use this to ensure the **normal** approvial process happens. Defaults to false.
+**bookAsRequestee** | Bool | No | If set, the request is made as though it were being made by the requestee, instead of the admin user associated with the API key. Use this to ensure the **normal** approval process happens. Defaults to false.
 
 <aside class="warnging">Getting a <strong>415</strong> response code? It's probably that you're not setting the holiday request properly. Check that it's set as JSON in the body of the request, and make sure you set a request header <strong>Content-Type</strong> set to <strong>application/json</strong></aside>
 
@@ -374,7 +374,7 @@ When you book a holiday through the API you get a JSON response, containing the 
 
 Parameter | Description
 --------- | -----------
-**success** | Whether the booking request was successfull or not
+**success** | Whether the booking request was successful or not
 **response**  | A response message from the booking request
 **rejections** | Whether there were any rejections with the booking, if it was against a department
 **autoApproved** | Whether the request was automatically approved or not
@@ -471,7 +471,7 @@ A user response from the API contains the following information:
 Parameter |  Description
 --------- | ------- | -----------
 **Id** | The unique `Id` for this user
-**firstname** | The user's firstname
+**firstname** | The user's first name
 **surname** | The user's surname
 **email** | The user's email.
 **admin** | Whether this user is an admin
@@ -493,7 +493,7 @@ Parameter |  Description
 **userInitials** | The user initials
 **countryCode** | The country code of the country this user is assigned to (for public holidays)
 **currentYearAllowance** | The allowance for this user, for the current leaveyear
-**nextYearAllowance** | The alloawnce for this user, for the next leave year
+**nextYearAllowance** | The allowance for this user, for the next leave year
 
 
 ## List all Users
@@ -552,7 +552,7 @@ List your users, filtered as per your query parameters.
 
 ### Query Parameters
 
-Append these query paramters to your request to filter your users.
+Append these query parameters to your request to filter your users.
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -917,7 +917,7 @@ List your public holidays, filtered as per your query parameters.
 
 ### Query Parameters
 
-Append these query paramters to your request to filter your public holidays.
+Append these query parameters to your request to filter your public holidays.
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -957,3 +957,188 @@ Retrieves a specific public holiday.
 Parameter | Description
 --------- | -----------
 ID | The ID of the public holiday to retrieve
+
+
+# Webhooks 🎣
+
+Set up Webhooks from Timetastic to push leave events to your own server. 
+
+You'll need to be an Admin user to use the API.  Head to [https://app.timetastic.co.uk/api](https://app.timetastic.co.uk/api) and under the _Webhooks_ section set your server URL in the Webhook address field.
+
+Timetastic will only send webhook events if there's a URL set here.
+
+The table below will show all webhook events and their status over the last 24 hours
+
+Timetastic supports the following Webhook events:
+
+### Events
+
+ID | Event | Description
+-- | ----- | -----------
+0 | **TestEvent** | A Test event was created from the dashboard. None of the data in this event is real, do not treat this event as real data.
+1 | **AbsenceRequested** | Fires whenever an absence is requested by any user for any leave type.  
+2 | **AbsenceApproved** | When absences are approved either by an approver or an Admin
+3 | **AbsenceDeclined** | As above, but when absences are declined
+4 | **AbsenceCancelled** | When a user cancels an absence in the future or an approver deletes it
+5 | **AbsenceBooked** | When an approver books leave in for a user on their behalf OR an absence doesn't require approval (either because it's switched off, or the user is an Admin)
+
+Webhook events are raised in real time but _are not guaranteed to be delivered in the order they were generated_ - It's possible you could get an `AbsenceCancelled` before an `AbsenceApproved` for the same booking.
+
+### Payload
+
+> Timetastic will send a HTTP POST to your server in the following format
+
+```shell
+Timetastic-Secret: "800dce29-fc6b-420b-8654-0f0170a9c572"
+```
+
+```json
+ {
+  "eventId": 90,
+  "eventType": "TestEvent",
+  "url": "https://your.server.com/timetasticlistener",
+  "recordId": -99999,
+  "timestamp": "2019-11-07T10:37:49.609652Z",
+  "performingUser": {
+    "id": 147708,
+    "firstname": "Jimmy",
+    "surname": "McNulty",
+    "fullname": "Jimmy McNulty"
+  },
+  "recordData": {
+    "Id": -99999,
+    "DateRangeString": "6 Nov – 8 Nov",
+    "StartDateString": "Wed 6-Nov-19",
+    "EndDateString": "Fri 8-Nov-19",
+    "StartDate": "2019-11-06T00:00:00+00:00",
+    "StartType": "Afternoon",
+    "EndDate": "2019-11-08T00:00:00+00:00",
+    "EndType": "Morning",
+    "UserId": 147708,
+    "UserName": "Jimmy McNulty",
+    "RequestedById": 147708,
+    "LeaveTypeId": -1,
+    "Duration": 2.0,
+    "Deduction": 2.0,
+    "ActionerId": 147708,
+    "CreatedAt": "2019-11-07T10:37:49.5919019+00:00",
+    "UpdatedAt": "2019-11-07T10:37:49.5922024+00:00",
+    "Reason": "Webhook Test Absence. Do not process",
+    "DeclineReason": "Holiday Decline Reason",
+    "Status": "Approved",
+    "AutoApproved": false,
+    "BookingUnit": "Days",
+    "LeaveType": "Webhook Test. Do not process"
+  }
+}
+```
+
+Parameter |  Description
+--------- | -----------
+EventId | This event's unique ID (retries will have this same ID)
+EventType | The Event Type
+URL | The URL of the destination
+RecordId | The ID of the absence/holiday associated with this event. Test events will always have a record ID of -99999
+Timestamp | When the event was raised (UTC)
+**PerformingUser** |  The user that raised the event
+Id | The User ID
+Firstname | Their first name
+Surname | Their surname
+Fullname | Their Full name
+**RecordData** | This is the event (absence) data (identical to the Holiday Detail)
+ID | The ID of the absence/holiday associated with this event 
+DateRangeString | A string representation of the absence dates
+StartDateString | A string representation of the Start Date
+EndDateString | A string representation of the End Date
+StartDate | Start of the holiday. Use in conjunction with the start type to determine the holiday start
+startType | **Morning** - Booked for the morning of the start date <br>**Afternoon** - Booked after the morning of the start date (starts at lunchtime) <br>**Hours** - This is an hourly booking, use the time in StartDate
+endDate | End of the holiday. Use in conjunction with the end type to determine the holiday end
+endType | Used to define the time the holiday ends: <br>**Morning** - Ends after the morning of the last day (lunchtime) <br>**Afternoon** - Ends at the end of the last day (whole day booked) <br>**Hours** - This is an hourly booking, use the time in the endDate
+userId | The `Id` of the user this leave is for
+userName | The full name of the user this leave is for
+requestedById | The `Id` of the user who requested this leave
+leaveTypeId | The `Id` of the leave type associated with this leave
+duration | The full duration of this leave, check `bookingUnit` to determine if it's hours or days
+deduction | The deduction from the users allowance, check `bookingUnit` to determine if it's hours or days
+actionerId | If the holiday has been actioned (approved or declined), the `Id` of the user who did this
+createdAt | When the holiday was created (booked)
+updatedAt | When the holiday was last updated (including actioning the holiday)
+reason | The reason for the holiday. Only visible if the requestor has permissions to see this
+declineReason | The reason for declining (or cancelling) the holiday. Only visible if the requestor has permissions to see this
+status | The status of this holiday at the time the event was raised = `['Pending', 'Approved', 'Cancelled', 'Declined']`
+autoApproved | Whether this holiday was automatically approved (for example, if booked by an Admin user)
+bookingUnit | Whether the holiday was booked in day(s) or hours. = `['Days', 'Hours']`
+leaveType | The name of the leave type associated with this leave
+
+
+
+### Security
+
+Your server must be correctly configured to support HTTPS with a valid server certificate. HTTPS is the only option here and loopback/local addresses aren't supported.
+
+Timetastic will send a header named `Timetastic-Secret` with all requests so you can verify the request came from Timetastic. You can immediately invalidate and refresh this secret in the API dashboard and it'll change for all attempts going forward, including retries.
+
+### Delivery & Retries
+
+The Webhook processor has a short timeout to enable high throughput of events to all clients.  We reccomend you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
+
+<aside class="notice"><strong>Group Bookings</strong> 
+ are treated as individual holiday events, so a group booking for 200 users will raise 200 webhook calls to your server.
+</aside>
+
+Returning any `2xx` status code is considered a success. Timetastic will retry any failed responses, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  Events currently expire 24 hours after they are raised.  Details on retries and the last response we received from your server are available in the API dashboard and via the API.
+
+
+### Get Webhook Events
+
+The dashboard will show events raised in the last day.  Timetastic retains 30 days of Webhook event history and you can access this via the API.
+
+
+`GET https://app.timetastic.co.uk/api/webhooks/list/<daysHistory>`
+
+```shell
+curl "https://app.timetastic.co.uk/api/webhooks/list/1"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+ {
+      "id": 90,
+      "organisationId": 36133,
+      "recordId": -99999,
+      "userId": 147708,
+      "retryCount": 0,
+      "eventType": 0,
+      "expiresAt": "2019-11-08T10:37:50",
+      "timestamp": "2019-11-07T10:37:50",
+      "isProcessed": true,
+      "lastProcessedAt": "2019-11-07T10:38:11",
+      "lastResponseCode": "200",
+      "lastResponseDetail": "",
+      "nextAttempt": "0001-01-01T00:00:00",
+      "url": "https://your.server.com/timetasticListener",
+      "isZapier": false
+    }
+```
+
+
+Parameter |  Description
+--------- | -----------
+ID | The Event ID
+OrganisationId | Your Organisation ID
+RecordId | The recordID associated with this event
+UserID | The UserID that raised this event
+RetryCount | How many attempts to deliver this event there have been
+EventType | The Event Type ID
+ExpiresAt | The Expiry Date and Time (UTC)
+Timestamp | When the Event was raised (UTC)
+IsProcessed | `true` if your server has responded success, otherwise `false`
+LastProcessedAt | The UTC Time that the event was last attempted
+LastResponseCode | The HTTP Code we last received from your server
+LastResponseDetail | The HTTP Content we last received from your server
+NextAttempt | The scheduled time this event will be next attempted (there may be a short delay if many events are queued). 
+URL | The URL assigned to this event
+IsZapier | Whether this event is intended for Zapier integrations. This should always be `false` for our calls to your webserver and can be ignored.
+
