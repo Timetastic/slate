@@ -276,6 +276,8 @@ ID | The ID of the holiday to retrieve
 
 ## Request a Holiday
 
+> 🎣 This will raise a Webhook event if you have Webhooks configured
+
 `POST http://api.timetastic.co.uk/api/holidays`
 
 Use this to submit a leave request to Timetastic. You can book for any user in your organisation. 
@@ -293,7 +295,7 @@ Some examples:
 
 from | fromTime | to | toTime | Description
 :------: | ---: | :---: | --------: | -----------
-2018-01-01 &nbsp;&nbsp;&nbsp; | AM | 2018-01-02 &nbsp;&nbsp;&nbsp;&nbsp; | PM | 2 full days: 1st and 2nd Jan
+2018-01-01 | AM | 2018-01-02 | PM | 2 full days: 1st and 2nd Jan
 2018-01-01 | AM | 2018-01-01 | PM | 1 full day: 1st Jan
 2018-01-01 | AM | 2018-01-02 | AM | Half a day: Just the morning
 2018-01-01 | PM | 2018-01-02 | PM | Half a day: Just the afternoon
@@ -383,6 +385,7 @@ Parameter | Description
 **overrideLockedDateRequired** | Whether the holiday can be force-added (overriding any locked dates)
 
 ## Action a Holiday
+> 🎣 This will raise a Webhook event if you have Webhooks configured
 
 > Approve a pending holiday request
 
@@ -961,13 +964,13 @@ ID | The ID of the public holiday to retrieve
 
 # Webhooks 🎣
 
-Set up Webhooks from Timetastic to push leave events to your own server. 
+Set up Webhooks from Timetastic to push leave events to your own server in near real time. 
 
 You'll need to be an Admin user to use the API.  Head to [https://app.timetastic.co.uk/api](https://app.timetastic.co.uk/api) and under the _Webhooks_ section set your server URL in the Webhook address field.
 
-Timetastic will only send webhook events if there's a URL set here.
+Timetastic will only send events if there's a URL set here and all events are sent via HTTP POST to this URL (including retries of failed attempts).  Your server must be using HTTPS and certificates must be valid. We'll follow HTTP redirects so if your server moves you can 302 to the new address and we'll still deliver events.
 
-The table below will show all webhook events and their status over the last 24 hours
+The table below that will show webhook events and their status over the last 24 hours. It updates automatically every 5 seconds but the data is available via the API so you can monitor webhooks for failures.
 
 Timetastic supports the following Webhook events:
 
@@ -996,7 +999,7 @@ Timetastic-Secret: "800dce29-fc6b-420b-8654-0f0170a9c572"
  {
   "eventId": 90,
   "eventType": "TestEvent",
-  "url": "https://your.server.com/timetasticlistener",
+  "url": "https://your.server.com/TimetasticListener",
   "recordId": -99999,
   "timestamp": "2019-11-07T10:37:49.609652Z",
   "performingUser": {
@@ -1080,13 +1083,13 @@ Timetastic will send a header named `Timetastic-Secret` with all requests so you
 
 ### Delivery & Retries
 
-The Webhook processor has a short timeout to enable high throughput of events to all clients.  We reccomend you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
+The Webhook processor has a short timeout to enable high throughput of events to all clients.  We recommend you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
 
 <aside class="notice"><strong>Group Bookings</strong> 
  are treated as individual holiday events, so a group booking for 200 users will raise 200 webhook calls to your server.
 </aside>
 
-Returning any `2xx` status code is considered a success. Timetastic will retry any failed responses, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  Events currently expire 24 hours after they are raised.  Details on retries and the last response we received from your server are available in the API dashboard and via the API.
+Returning any `2xx` status code is considered a success. Timetastic will retry any failed responses, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  If you change the URL in the dashboard, all new events _and_ retries will go to this URL. Events expire 24 hours after they are raised and are then discarded and purged with no further attempts.  Details on retries and the last response we received from your server are available in the API dashboard and via the API method below.
 
 
 ### Get Webhook Events
@@ -1118,8 +1121,8 @@ curl "https://app.timetastic.co.uk/api/webhooks/list/1"
       "lastResponseCode": "200",
       "lastResponseDetail": "",
       "nextAttempt": "0001-01-01T00:00:00",
-      "url": "https://your.server.com/timetasticListener",
-      "isZapier": false
+      "url": "https://your.server.com/TimetasticListener",
+      "type": 0
     }
 ```
 
@@ -1140,5 +1143,5 @@ LastResponseCode | The HTTP Code we last received from your server
 LastResponseDetail | The HTTP Content we last received from your server
 NextAttempt | The scheduled time this event will be next attempted (there may be a short delay if many events are queued). 
 URL | The URL assigned to this event
-IsZapier | Whether this event is intended for Zapier integrations. This should always be `false` for our calls to your webserver and can be ignored.
+Type | Used internally for the type of webhook we're sending. For your requests this will _always_ be 0
 
