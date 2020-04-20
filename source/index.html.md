@@ -968,7 +968,7 @@ Set up Webhooks from Timetastic to push leave events to your own server in near 
 
 You'll need to be an Admin user to use the API.  Head to [https://app.timetastic.co.uk/api](https://app.timetastic.co.uk/api) and under the _Webhooks_ section set your server URL in the Webhook address field.
 
-Timetastic will only send events if there's a URL set here and all events are sent via HTTP POST to this URL (including retries of failed attempts).  Your server must be using HTTPS and certificates must be valid. Webhooks will honour HTTP redirects so if your server moves you can 302 to the new address and still receive events.
+Timetastic will only send events if there's a URL set here and all events are sent via HTTP POST to this URL (including retries of failed attempts).  Your server must be using HTTPS and certificates must be valid. 
 
 The table will show webhook events and their status over the last 24 hours. It updates automatically every 5 seconds but the data is available via the API so you can monitor webhooks for failures.
 
@@ -1083,14 +1083,18 @@ Timetastic will send a header named `Timetastic-Secret` with all requests so you
 
 ### Delivery & Retries
 
-Timeouts on Webhooks are short to enable high throughput of events to all clients.  It is strongly recommend you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
+Timeouts on Webhooks are short to enable high throughput of events to all clients.  It is strongly recommended that you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
 
 <aside class="notice"><strong>Group Bookings</strong> 
- are treated as individual holiday events, so a group booking for 200 users will raise 200 webhook calls to your server.
+ are treated as individual holiday events, so a group booking for 150 users will raise 150 webhook calls to your server.
 </aside>
 
 Returning any `2xx` status code is considered a success. Failed responses will be retried, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  If you change the URL in the dashboard, all new events _and_ retries will go to this URL. Events expire 24 hours after they are raised and are then discarded and purged with no further attempts.  Details on retries and the last response received from your server are available in the API dashboard and via the API method below.
 
+
+<aside class="warning"><strong>Redirects are not supported</strong> <br/>
+ A URL redirection or "Not Modified" response is treated as a failure. Timetastic will not honour redirects, any other information returned in the request headers or request body is ignored.
+</aside>
 
 ### Get Webhook Events
 
