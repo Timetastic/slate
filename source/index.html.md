@@ -81,6 +81,9 @@ Using the `holidays` endpoint you can query for all types of leave booking in Ti
 ```json
       {
           "id": 101010,
+          "dateRangeString": "6 Nov – 8 Nov",
+          "startDateString": "Wed 6-Nov-19",
+          "endDateString": "Fri 8-Nov-19",
           "startDate": "2019-04-11T00:00:00",
           "startType": "Morning",
           "endDate": "2019-04-16T00:00:00",
@@ -108,6 +111,9 @@ A holiday response contains the following information:
 Parameter |  Description
 --------- | ------- | -----------
 **Id** | The unique `Id` for this holiday
+**dateRangeString** | A string representation of the absence dates
+**startDateString** | A string representation of the Start Date
+**endDateString** | A string representation of the End Date
 **startDate** | Start of the holiday. Use in conjunction with the start type to determine the holiday start,
 **startType** | **Morning** - Booked for the morning of the start date <br>**Afternoon** - Booked after the morning of the start date (starts at lunchtime) <br>**Hours** - This is an hourly booking, use the time in StartDate
 **endDate** | End of the holiday. Use in conjunction with the end type to determine the holiday end
@@ -1048,32 +1054,7 @@ Id | The User ID
 Firstname | Their first name
 Surname | Their surname
 Fullname | Their Full name
-**RecordData** | This is the event (absence) data (identical to the Holiday Detail)
-ID | The ID of the absence/holiday associated with this event 
-DateRangeString | A string representation of the absence dates
-StartDateString | A string representation of the Start Date
-EndDateString | A string representation of the End Date
-StartDate | Start of the holiday. Use in conjunction with the start type to determine the holiday start
-startType | **Morning** - Booked for the morning of the start date <br>**Afternoon** - Booked after the morning of the start date (starts at lunchtime) <br>**Hours** - This is an hourly booking, use the time in StartDate
-endDate | End of the holiday. Use in conjunction with the end type to determine the holiday end
-endType | Used to define the time the holiday ends: <br>**Morning** - Ends after the morning of the last day (lunchtime) <br>**Afternoon** - Ends at the end of the last day (whole day booked) <br>**Hours** - This is an hourly booking, use the time in the endDate
-userId | The `Id` of the user this leave is for
-userName | The full name of the user this leave is for
-requestedById | The `Id` of the user who requested this leave
-leaveTypeId | The `Id` of the leave type associated with this leave
-duration | The full duration of this leave, check `bookingUnit` to determine if it's hours or days
-deduction | The deduction from the users allowance, check `bookingUnit` to determine if it's hours or days
-actionerId | If the holiday has been actioned (approved or declined), the `Id` of the user who did this
-createdAt | When the holiday was created (booked)
-updatedAt | When the holiday was last updated (including actioning the holiday)
-reason | The reason for the holiday. Only visible if the requestor has permissions to see this
-declineReason | The reason for declining (or cancelling) the holiday. Only visible if the requestor has permissions to see this
-status | The status of this holiday at the time the event was raised = `['Pending', 'Approved', 'Cancelled', 'Declined']`
-autoApproved | Whether this holiday was automatically approved (for example, if booked by an Admin user)
-bookingUnit | Whether the holiday was booked in day(s) or hours. = `['Days', 'Hours']`
-leaveType | The name of the leave type associated with this leave
-
-
+**RecordData** | This is the event (absence) data (identical to the Holiday Detail - [see here for details](/#holiday-detail))
 
 ### Security
 
