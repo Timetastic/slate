@@ -962,7 +962,7 @@ Parameter | Description
 ID | The ID of the public holiday to retrieve
 
 
-# Webhooks 🎣
+# Webhooks
 
 Set up Webhooks from Timetastic to push leave events to your own server in near real time. 
 
@@ -970,7 +970,7 @@ You'll need to be an Admin user to use the API.  Head to [https://app.timetastic
 
 Timetastic will only send events if there's a URL set here and all events are sent via HTTP POST to this URL (including retries of failed attempts).  Your server must be using HTTPS and certificates must be valid. 
 
-The table will show webhook events and their status over the last 24 hours. It updates automatically every 5 seconds but the data is available via the API so you can monitor webhooks for failures.
+The table will show webhook events and their status over the last 24 hours. This data is also available via the API so you can monitor webhooks for failures.
 
 Timetastic supports the following Webhook events:
 
@@ -1079,22 +1079,24 @@ leaveType | The name of the leave type associated with this leave
 
 Your server must be correctly configured to support HTTPS with a valid server certificate. HTTPS is the only option here and loopback/local addresses aren't supported.
 
-Timetastic will send a header named `Timetastic-Secret` with all requests so you can verify the request came from Timetastic. You can immediately invalidate and refresh this secret in the API dashboard and it'll change for all attempts going forward, including retries.
+Timetastic will send a header named `Timetastic-Secret` with all requests with a key which can be found in the dashboard. You can use this key to verify the request came from Timetastic. You can immediately invalidate and refresh this secret in the API dashboard and it'll change for all attempts going forward, including retries.
 
 ### Delivery & Retries
 
 Timeouts on Webhooks are short to enable high throughput of events to all clients.  It is strongly recommended that you acknowledge events immediately by returning a `200` HTTP code and then process them after acknowledging them.  Timetastic will process events as quickly as possible, be prepared for the influx if your entire company books Christmas off at the same time!
 
 <aside class="notice"><strong>Group Bookings</strong> 
- are treated as individual holiday events, so a group booking for 150 users will raise 150 webhook calls to your server.
+ are treated as individual holiday events, so a group booking for 150 users will raise 150 webhook calls to your server at once.
 </aside>
 
-Returning any `2xx` status code is considered a success. Failed responses will be retried, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  If you change the URL in the dashboard, all new events _and_ retries will go to this URL. Events expire 24 hours after they are raised and are then discarded and purged with no further attempts.  Details on retries and the last response received from your server are available in the API dashboard and via the API method below.
-
+Returning any `2xx` status code is considered a success. Failed responses will be retried, exponentially backing off until the event expires (e.g. 1,2,4,8,16&hellip; mins).  If you change the URL in the dashboard, all new events _and_ retries will go to this URL. Events expire 24 hours after they are first raised and are then discarded and purged with no further attempts.  Details on retries and the last response received from your server are available in the API dashboard and via the Webhooks API method below.
 
 <aside class="warning"><strong>Redirects are not supported</strong> <br/>
  A URL redirection or "Not Modified" response is treated as a failure. Timetastic will not honour redirects, any other information returned in the request headers or request body is ignored.
 </aside>
+
+### Persistent Failures
+Webhook delivery will be disabled if after a period of 24 hours more than 80% of webhook requests have failed. This is to prevent a build up of failing clients as webservers fall out of use and domains change over time.  When webhooks are disabled, all of the administrators on your Timetastic account will be emailed. You can re-enable webhooks in the dashboard.  These thresholds may change, the email and this documentation will include the current thresholds.
 
 ### Get Webhook Events
 
@@ -1143,7 +1145,7 @@ ExpiresAt | The Expiry Date and Time (UTC)
 Timestamp | When the Event was raised (UTC)
 IsProcessed | `true` if your server has responded success, otherwise `false`
 LastProcessedAt | The UTC Time that the event was last attempted
-LastResponseCode | The HTTP Code we last received from your server
+LastResponseCode | The HTTP Code we last received from your server (trimmed to 4000 characters)
 LastResponseDetail | The HTTP Content we last received from your server
 NextAttempt | The scheduled time this event will be next attempted (there may be a short delay if many events are queued). 
 URL | The URL assigned to this event
