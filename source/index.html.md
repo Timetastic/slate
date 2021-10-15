@@ -776,7 +776,7 @@ curl "https://app.timetastic.co.uk/api/departments/1"
 
 # Leave Types
 
-## Department Detail
+## Leave Type Detail
 
 > A typical leave type response:
 
