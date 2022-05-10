@@ -16,10 +16,10 @@ steps:
     addToPath: true
 
 - script: |
-    gem install bundler
+    gem install bundler --v 1.17.3
     gem install middleman 
-    bundle install --retry=3 --jobs=4
-    bundle exec middleman build --clean
+    bundle _1.17.3_ install --retry=3 --jobs=4
+    bundle _1.17.3_ exec middleman build --clean
   displayName: 'build the site'    
   workingDirectory: '$(System.DefaultWorkingDirectory)'
 
