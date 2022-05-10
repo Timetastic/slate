@@ -12,11 +12,11 @@ pool:
 steps:
 - task: UseRubyVersion@0
   inputs:
-    versionSpec: '>= 2.5'
+    versionSpec: '2.7.0'
     addToPath: true
 
 - script: |
-    gem install bundler -v 1.17.3
+    gem install bundler
     gem install middleman 
     bundle install --retry=3 --jobs=4
     bundle exec middleman build --clean
