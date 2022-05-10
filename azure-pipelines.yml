@@ -21,11 +21,10 @@ steps:
 
 - script: bundle exec middleman build --clean
   displayName: 'Building API docs: bundle exec middleman build --clean'
-  workingDirectory: "$(Build.ArtifactStagingDirectory)"
   
 # Now publish the output 
 - task: PublishPipelineArtifact@1
   inputs:
 
-    targetPath: "$(Build.ArtifactStagingDirectory)/build/"
+    targetPath: "$(System.DefaultWorkingDirectory)/build/"
     artifactName: ApiDocs
