@@ -17,13 +17,9 @@ steps:
 - script: |
     gem install bundler -v 1.17.3
     bundle install 
+    bundle exec middleman build --clean
   displayName: 'Installing prerequisites: bundle install'
 
-- script: |
-    bundle exec middleman build --clean
-  displayName: 'Building API docs: bundle exec middleman build --clean'
-  
-# Now publish the output 
 - task: PublishPipelineArtifact@1
   inputs:
 
