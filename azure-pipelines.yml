@@ -19,7 +19,8 @@ steps:
     bundle install 
   displayName: 'Installing prerequisites: bundle install'
 
-- script: bundle exec middleman build --clean
+- script: |
+    bundle exec middleman build --clean
   displayName: 'Building API docs: bundle exec middleman build --clean'
   
 # Now publish the output 
