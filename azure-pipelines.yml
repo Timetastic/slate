@@ -18,15 +18,10 @@ steps:
 - script: |
     gem install bundler -v 1.17.3
     gem install middleman 
-  displayName: 'install bundler'
-
-- script: |
     bundle install --retry=3 --jobs=4
-  displayName: 'bundle install'
-
-- script: |
     bundle exec middleman build --clean
-  displayName: 'middleman build'    
+  displayName: 'build the site'    
+  workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 - task: PublishPipelineArtifact@1
   inputs:
