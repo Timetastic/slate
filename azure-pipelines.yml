@@ -13,15 +13,22 @@ steps:
 - task: UseRubyVersion@0
   inputs:
     versionSpec: '>= 2.5'
+    addToPath: true
 
 - script: |
-    CALL gem install bundler --v 1.17.3
+    gem install bundler --v 1.17.3
+    gem install middleman
+  displayName: 'install bundler'
+
+- script: |
     bundle install --retry=3 --jobs=4
+  displayName: 'bundle install'
+
+- script: |
     bundle exec middleman build --clean
-  displayName: 'Installing prerequisites: bundle install'
+  displayName: 'middleman build'    
 
 - task: PublishPipelineArtifact@1
   inputs:
-
-    targetPath: "$(System.DefaultWorkingDirectory)/build/"
+    targetPath: '$(System.DefaultWorkingDirectory)/build/'
     artifactName: ApiDocs
