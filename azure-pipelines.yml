@@ -6,6 +6,14 @@
 trigger:
 - master
 
+schedules:
+- cron: "30 0 * * 1-5"
+  displayName: 12:30am build, Mon-Fri
+  branches:
+    include:
+    - master
+  always: true
+
 pool:
   vmImage: ubuntu-latest
 
