@@ -12,7 +12,7 @@ pool:
 steps:
 - task: UseRubyVersion@0
   inputs:
-    versionSpec: '2.7.0p0'
+    versionSpec: '2.7.6'
     addToPath: true
 
 - script: |
