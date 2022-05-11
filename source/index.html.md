@@ -231,7 +231,7 @@ Parameter | Default | Description
 
 ### Paging
 
-You are limited to 100 holidays in any response. If your query returns more than this, you'll need to request any additional pages. With every request, you get a sumary as shown in the JSON response in the right-hand column.
+You are limited to 100 holidays in any response. If your query returns more than this, you'll need to request any additional pages. With every request, you get a summary as shown in the JSON response in the right-hand column.
 
 By examining this response, you'll be able to determine whether additional requests are needed. The `nextPageLink` will tell you what request to make for the next set of responses.
 
@@ -776,7 +776,7 @@ curl "https://app.timetastic.co.uk/api/departments/1"
 
 # Leave Types
 
-## Department Detail
+## Leave Type Detail
 
 > A typical leave type response:
 
