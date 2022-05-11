@@ -147,7 +147,7 @@ curl "https://app.timetastic.co.uk/api/holidays"
 > or to filter for a specific date range:
 
 ```shell
-curl "https://app.timetastic.co.uk/api/holidays?Start=2018-01-01&End=2018-01-31
+curl "https://app.timetastic.co.uk/api/holidays?Start=2018-01-01&End=2018-01-31"
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
