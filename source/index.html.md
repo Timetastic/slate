@@ -17,7 +17,7 @@ You can use the Timetastic API to integrate Timetastic into other software appli
 
 The API is designed to be a predictable and intuitive way to interact with your company’s Timetastic account.
 
-Like Timetastic itself the API is under continuous development, so changes and improvements are to be expected. Be sure to keep an eye on our [Twitter Changelog](https://twitter.com/search?f=tweets&vertical=default&q=timetastic%20%23changelog&src=typd) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
+Like Timetastic itself the API is under continuous development, so changes and improvements are to be expected. Be sure to keep an eye on our [Changelog](https://changelog.timetastic.co.uk) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
 
 **Get stuck in:** Read the sections below on Authentication and Rate Limiting, then see what you can do!
 
