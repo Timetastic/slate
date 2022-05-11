@@ -1,3 +1,26 @@
+<img src="https://timetastic.co.uk/images/timetastic_logo_blue.png" alt="Timetastic Logo" width="180">
+
+Welcome to the Timetastic API Docs
+------------
+
+We use Slate for our documentation - details of how to get started are below.
+
+### Pull requests
+Are very welcome! As of May 2022 we're taking a new approach to the API docs - trying to keep things as simple as we can:
+
+1. Raise your PR against this repo
+2. One of the dev team will be notified 
+3. They'll review and suggest changes or hopefully just merge straight away
+4. Your changes will show up on https://timetastic.co.uk/api/ a day later
+
+If you have any issues or questions about the process, send us an email from the support form: https://timetastic.co.uk/support/#talk and one of the dev team will get back to you.
+
+Thanks to all our contributors!
+
+
+Now on with the Slate docs 👇
+
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
