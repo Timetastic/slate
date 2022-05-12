@@ -19,6 +19,11 @@ The API is designed to be a predictable and intuitive way to interact with your 
 
 Like Timetastic itself the API is under continuous development, so changes and improvements are to be expected. Be sure to keep an eye on our [Changelog](https://changelog.timetastic.co.uk) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
 
+**Get started quickly**
+We've created a [Postman collection of the API endpoints](Timetastic.postman_collection) so you can get set up and testing early and easily. You can import this collection into [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/), [Paw](https://paw.cloud/) or your HTTP/Rest client of choice.
+
+We've set up environment variables for Timetastic's production API endpoint and commonly used enums in the API. Just add your API key in the environment settings and off you go. 
+
 **Get stuck in:** Read the sections below on Authentication and Rate Limiting, then see what you can do!
 
 

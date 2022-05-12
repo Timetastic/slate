@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "75d11842-d9c2-4889-96fa-82d0ae60c092",
+		"name": "Timetastic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Timetastic API",
+			"item": [
+				{
+					"name": "Holidays",
+					"item": [
+						{
+							"name": "List all holidays",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/holidays?DepartmentId&UserIds&ExclusionUserIds&NonArchivedUsersOnly&Start&End&Status&ApproverId&PageNumber&Status&ApproverId&PageNumber",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"holidays"
+									],
+									"query": [
+										{
+											"key": "DepartmentId",
+											"value": null
+										},
+										{
+											"key": "UserIds",
+											"value": null
+										},
+										{
+											"key": "ExclusionUserIds",
+											"value": null
+										},
+										{
+											"key": "NonArchivedUsersOnly",
+											"value": null
+										},
+										{
+											"key": "Start",
+											"value": null
+										},
+										{
+											"key": "End",
+											"value": null
+										},
+										{
+											"key": "Status",
+											"value": null
+										},
+										{
+											"key": "ApproverId",
+											"value": null
+										},
+										{
+											"key": "PageNumber",
+											"value": null
+										},
+										{
+											"key": "Status",
+											"value": null
+										},
+										{
+											"key": "ApproverId",
+											"value": null
+										},
+										{
+											"key": "PageNumber",
+											"value": null
+										}
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a specific holiday",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/holidays/***HOLIDAY_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"holidays",
+										"***HOLIDAY_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#get-a-specific-holiday\n\nPass the Holiday ID in the query string "
+							},
+							"response": []
+						},
+						{
+							"name": "Request a holiday",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"from\": \"2022-05-13\",\n\t\"fromTime\": \"AM\",\n\t\"to\": \"2022-05-13\",\n\t\"toTime\": \"PM\",\n\t\"leaveTypeId\": <LEAVE_TYPE_ID>,\n\t\"userOrDepartmentId\": <USER/DEPT_ID>,\n\t\"bookFor\": {{ _.BookForEnum.User }},\n\t\"description\": \"test booking\",\n}"
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/holidays",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"holidays"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#request-a-holiday\n\nUse this endpoint to generate a holiday request. A webhook event will be raised if webhooks are enabled.\n\nThe fields included in this payload are all required except for description. See the docs for more optional parameters and fields"
+							},
+							"response": []
+						},
+						{
+							"name": "Action a holiday",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/holidays/***HOLIDAY_ID***?holidayUpdateAction={{HolidayUpdateActionEnum.Approve}}",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"holidays",
+										"***HOLIDAY_ID***"
+									],
+									"query": [
+										{
+											"key": "holidayUpdateAction",
+											"value": "{{HolidayUpdateActionEnum.Approve}}"
+										}
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#action-a-holiday\n\nUse this endpoint to approve or decline a holiday request. A webhook event will be raised if webhooks are enabled.\n\n"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "List All Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a specific user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/***USER_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"***USER_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Departments",
+					"item": [
+						{
+							"name": "Get a specific department",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/departments/***DEPARTMENT_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"departments",
+										"***DEPARTMENT_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						},
+						{
+							"name": "List All Departments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/departments",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"departments"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Leave Types",
+					"item": [
+						{
+							"name": "Get a specific Leave Type",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/leavetypes/***LEAVE_TYPE_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"leavetypes",
+										"***LEAVE_TYPE_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						},
+						{
+							"name": "List All Leave Types",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/leavetypes",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"leavetypes"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Public Holidays",
+					"item": [
+						{
+							"name": "Get a specific public holiday",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays/***PUBLIC_HOLIDAY_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"publicholidays",
+										"9670044"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#get-a-specific-holiday"
+							},
+							"response": []
+						},
+						{
+							"name": "List All Public Holidays",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"publicholidays"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Webhooks",
+					"item": [
+						{
+							"name": "Get webhook events",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/webhooks/list/1",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"webhooks",
+										"list",
+										"1"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#get-webhook-events"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TIMETASTIC_API_KEY}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TIMETASTIC_BASEURL",
+			"value": "https://app.timetastic.co.uk/api",
+			"type": "default"
+		},
+		{
+			"key": "TIMETASTIC_API_KEY",
+			"value": "YOUR API KEY HERE",
+			"type": "default"
+		},
+		{
+			"key": "HolidayStatus.Pending",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "HolidayStatus.Approved",
+			"value": "2",
+			"type": "default"
+		},
+		{
+			"key": "HolidayStatus.Cancelled",
+			"value": "4",
+			"type": "default"
+		},
+		{
+			"key": "HolidayStatus.Declined",
+			"value": "8",
+			"type": "default"
+		},
+		{
+			"key": "HolidayUpdateActionEnum.Approve",
+			"value": "0",
+			"type": "default"
+		},
+		{
+			"key": "HolidayUpdateActionEnum.Decline",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "HolidayUpdateActionEnum.Delete",
+			"value": "2",
+			"type": "default"
+		},
+		{
+			"key": "BookForEnum.User",
+			"value": "0",
+			"type": "default"
+		},
+		{
+			"key": "BookForEnum.Department",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "BookForEnum.Everyone",
+			"value": "2",
+			"type": "default"
+		}
+	]
+}
