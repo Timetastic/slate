@@ -1059,7 +1059,7 @@ id | The User ID
 firstname | Their first name
 surname | Their surname
 fullname | Their Full name
-**recordData** | This is the event (absence) data (identical to the Holiday Detail - [see here for details](/#holiday-detail))
+**recordData** | This is the event (absence) data (identical to the Holiday Detail - [see here for details](/api/#holiday-detail))
 
 ### Security
 
