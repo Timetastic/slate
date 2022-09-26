@@ -19,12 +19,15 @@ The API is designed to be a predictable and intuitive way to interact with your 
 
 Like Timetastic itself the API is under continuous development, so changes and improvements are to be expected. Be sure to keep an eye on our [Changelog](https://changelog.timetastic.co.uk) to receive information on new additions and changes to both Timetastic and the API when we release new features and changes.
 
-**Get started quickly**
+**Get started quickly:**
+
 We've created a <a href="Timetastic.postman_collection.json" download>Postman collection of the API endpoints</a> so you can get set up and testing early and easily. You can import this collection into [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/), [Paw](https://paw.cloud/) or your HTTP/Rest client of choice.
 
 We've set up environment variables for Timetastic's production API endpoint and commonly used enums in the API. Just add your API key in the environment settings and off you go. 
 
-**Get stuck in:** Read the sections below on Authentication and Rate Limiting, then see what you can do!
+**Get stuck in:** 
+
+Read the sections below on Authentication and Rate Limiting, then see what you can do!
 
 
 # Rate Limiting
@@ -38,6 +41,8 @@ Content: API calls quota exceeded! maximum admitted 5 per 1s.
 ```
 
 To keep things running smoothly, there is a rate limit of 5 requests per second, per API key.
+
+Adding, Editing, Archiving and Restoring users has a rate limit of 2 requests per second. 
 
 If you exceed the limit, you'll get a `429` response code.
 
@@ -216,7 +221,7 @@ curl "https://app.timetastic.co.uk/api/holidays?Start=2018-01-01&End=2018-01-31"
 
 Search for holidays, filtered as per your query parameters.
 
-`GET http://app.timetastic.co.uk/api/holidays`
+`GET https://app.timetastic.co.uk/api/holidays`
 
 ### Query Parameters
 
@@ -289,7 +294,7 @@ ID | The ID of the holiday to retrieve
 
 > 🎣 This will raise a Webhook event if you have Webhooks configured
 
-`POST http://api.timetastic.co.uk/api/holidays`
+`POST https://api.timetastic.co.uk/api/holidays`
 
 Use this to submit a leave request to Timetastic. You can book for any user in your organisation.
 Post your holiday request as JSON in the body of the request.
@@ -415,7 +420,7 @@ curl 'https://app.timetastic.co.uk/api/holidays/1?holidayUpdateAction=1'
   --data $'{"reason": "Sorry, you're needed in the office."}'
 ```
 
-`POST http://api.timetastic.co.uk/api/holidays/<ID>`
+`POST https://api.timetastic.co.uk/api/holidays/<ID>`
 
 Use this to action a holiday - approve, decline or cancel.
 
@@ -562,7 +567,7 @@ curl "https://app.timetastic.co.uk/api/users?departmentId=10
 
 List your users, filtered as per your query parameters.
 
-`GET http://app.timetastic.co.uk/api/users`
+`GET https://app.timetastic.co.uk/api/users`
 
 ### Query Parameters
 
@@ -635,7 +640,7 @@ curl "https://app.timetastic.co.uk/api/users/1"
     ],
     "endDate": null,
     "departmentName": "Customer Service",
-    "gravatar": "https://timetasticwebjobsuk.blob.core.windows.net/avatars/u146599.png?v=29",
+    "gravatar": "https://avatars.timetastic.co.uk/f403c04c-701e-002e-095b-c41ad3000000.png",
     "allowanceRemaining": 29.5,
     "hasLoggedOn": true,
     "isArchived": false,
@@ -680,6 +685,215 @@ Parameter | Type | Description
 **allowance** | Number | The starting allowance, including any days in lieu
 **remaining** | Number | The remaining amount
 **used** | Number | The used amount
+
+## Add a User
+<aside class="notice">⌛ This endpoint is limited to 2 requests per second</aside>
+
+`POST https://app.timetastic.co.uk/api/users/add`
+
+
+```shell
+curl "https://app.timetastic.co.uk/api/users/add"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  --data $'{
+    FirstName: "Charles",
+    Lastname: "Babbage",
+    Allowance: 25,
+    DepartmentId: 123456
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"id": 123456
+}
+```
+Adds a new user to Timetastic, optionally triggering a welcome email.
+
+### Required Parameters
+
+Parameter | Description
+--------- | -----------
+FirstName | The user's first name
+LastName | The user's last name
+Allowance | The user's annual allowance in days
+DepartmentId | The ID of the department that this user is in.
+
+### Optional Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+**EmailAddress** | String | The new user's Email address
+**SendWelcomeEmail** | Boolean | Whether to send the user an email to set a password and start using Timetastic
+**StartDate** | DateTime | The user's start date. In ISO 8601 format: `2022-02-04T00:00:00`
+
+### Response
+
+Parameter | Type | Description
+--------- | ---- | -----------
+**Id** | Integer | The new user's ID
+
+### Error Codes
+Code | Description
+-- | -----------
+0 | Succeeded
+1 | Succeeded - new start date was set on the user
+2 | Failed - something went wrong, check your data is valid
+3 | Invalid Value - a value you set is not valid, check names are not blank and that there's a department ID and allowance set. The start date must be before today (if set)
+4 | NothingToDo - No action could be completed
+5 | Not Permitted - You don't have permission to add a user
+6 | Rate Limited - You have exceeded the rate limit[1]
+
+[1]: To prevent user enumeration attacks if you hit the "Email address is in use" error too many times, you will be prevented from adding or editing any more users for an amount of time. This will apply to all API keys for your organisation and cannot be reset.
+
+
+## Edit a User
+<aside class="notice">⌛ This endpoint is limited to 2 requests per second</aside>
+
+`POST https://app.timetastic.co.uk/api/users/edit/<ID>`
+
+
+```shell
+curl "https://app.timetastic.co.uk/api/users/edit/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  --data $'{
+    FirstName: "David",
+}'
+```
+
+> The above command returns a `200 OK` if the changes were successful
+ or a `400 BadRequest` if not
+
+Edits an existing user in Timetastic. Allows you to populate more data into a user record after an initial ADD operation.
+You can pass any combination of the following parameters and only those values will be changed. 
+
+### Available Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+FirstName | String | The user's first name
+LastName | String |The user's last name
+EmailAddress | String | The User's email address. To clear a user's email address you must pass a blank string to this parameter: ""
+DepartmentId | Integer | The ID of the department that this user is in.
+StartDate | DateTime | The user's start date
+Birthday | DateTime | The user's date of birth
+Admin | Boolean | Whether the user is a Timetastic Admin (User must have an email address to set this)
+ApproverId | Integer | The user's Approver - set this to 0 to default the user's approver to their department boss
+HasPublicHolidays | Bool | Whether the user has public holidays enabled. If you're setting public holidays for a new user or user that's not had public holidays enabled before you'll also need to pass a valid `PublicHolidaySetId` in the same request.
+PublicHolidaySetId | Integer | The user's public holiday `SetId`. `HasPublicHolidays` will need to be enabled for this to update the user. [See Public Holidays for details on "sets"](#public-holidays) 
+
+### Pro account optional parameters
+
+If you have [Timetastic Pro](https://help.timetastic.co.uk/hc/en-us/categories/360002478198-Timetastic-Pro), you can also pass the following and store them against the user:
+
+Parameter | Type | Description
+--------- | ---- | -----------
+PayrollId | String | The user's Payroll ID or Employee number in your other systems
+JobTitle | String | The user's job title
+Address1 | String | User's Address line 1
+Address2 | String | User's Address line 2
+City | String | User's City
+PostCode | String | User's Postcode
+Telephone1 | String | User's first phone number (in Timetastic we display this as Mobile)
+Telephone2 | String | User's second phone number (in Timetastic we display this as Landline)
+Country | String: ALPHA-2 country code | The user's country - set using a 2 letter country code. e.g. GB = United Kingdom
+EmergencyContactName | String | The user's emergency contact name
+EmergencyContactPhone | String | The user's emergency contact number
+
+### Response
+
+`200 OK` for successfully updating a user record. Failures will return a `400 Bad request` with some error detail as JSON in the body 
+
+```json
+{
+	"errorStatus": 2,
+	"errorMessage": "First name is required"
+}
+```
+
+### Error Status
+
+When editing a user you may get an error - in most cases you'll get an error message, but the codes are easier to parse:
+
+ErrorStatus | Description
+--------- | -----------
+0 | Success
+1 | Success - user's start date has been set
+2 | Failed - check your data is valid
+3 | You can't remove the admin status from this user
+4 | You can't remove admin privileges for your own user
+5 | The email address couldn't be removed as the user is an approver/department boss/admin
+6 | Not Permitted - you're updating something you're not allowed to, check your IDs
+7 | No action was performed, there was nothing to do
+8 | The email address is invalid,
+9 | The Email address is already in use[1]
+10 | You can't set this user as an Admin, they have no email address
+11 | You have exceeded the rate limit[1]
+
+[1]: To prevent user enumeration attacks if you hit the "Email address is in use" error too many times, you will be prevented from adding or editing any more users for an amount of time. This will apply to all API keys for your organisation and cannot be reset.
+
+
+## Archive a user
+<aside class="notice">⌛ This endpoint is limited to 2 requests per second</aside>
+
+Use this to archive a user from Timetastic. They will be immediately logged out and unable to log in.
+
+`POST https://app.timetastic.co.uk/api/users/archive/<ID>`
+
+
+```shell
+curl "https://app.timetastic.co.uk/api/users/archive/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  --data $'{
+    ArchiveDate: "2022-09-09 00:00:00",
+}'
+```
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the user to archive
+
+### Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+ArchiveDate | DateTime | The Date this user left your organisation. Must be in the past (UTC). Timetastic will display this on the archived user's profile and in reports
+
+### Response
+
+`200 OK` for successfully archiving a user. Failures will return a `400 Bad request` with some error detail as JSON in the body 
+
+
+## Restore a user
+<aside class="notice">⌛ This endpoint is limited to 2 requests per second</aside>
+
+
+Use this to restore a user from Timetastic's Archive - they will be able to log in and use Timetastic as normal.
+
+`POST https://app.timetastic.co.uk/api/users/restore/<ID>`
+
+```shell
+curl "https://app.timetastic.co.uk/api/users/archive/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+```
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the user to restore
+
+### Response
+
+`200 OK` for successfully restoring a user. Failures will return a `400 Bad request` with some error detail as JSON in the body 
 
 # Departments
 
@@ -757,14 +971,13 @@ curl "https://app.timetastic.co.uk/api/departments"
     "nextAllowance": 35,
     "maxOff": 2,
     "bankHolidaySetId": 0
-  },
-  ...
-}
+  }
+]
 ```
 
 ## Get a Specific Department
 
-Get's a specific department.
+Gets a specific department.
 
 `GET https://app.timetastic.co.uk/api/departments/<ID>`
 

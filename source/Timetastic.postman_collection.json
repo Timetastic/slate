@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "75d11842-d9c2-4889-96fa-82d0ae60c092",
+		"_postman_id": "59b431c8-18aa-4fb7-b90b-1f6ba400736c",
 		"name": "Timetastic",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -207,6 +207,141 @@
 							"response": []
 						},
 						{
+							"name": "Add User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"FirstName\": \"Firstname\",\r\n\"Lastname\": \"Lastname\",\r\n\"Allowance\": 25,\r\n\"DepartmentId\": <departmentId>,\r\n\"StartDate\": \"2022-02-04T00:00:00\",\r\n\"SendWelcomeEmail\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/add",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"add"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#add-a-user"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Lastname\": \"Smithe\",\r\n    \"ApproverId\": 12345\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/edit/***USER_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"edit",
+										"***USER_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#edit-a-user"
+							},
+							"response": []
+						},
+						{
+							"name": "Archive User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"archiveDate\": \"2022-02-04T00:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/archive/***USER_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"archive",
+										"***USER_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#archive-a-user"
+							},
+							"response": []
+						},
+						{
+							"name": "Restore User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/restore/***USER_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"restore",
+										"***USER_ID***"
+									]
+								},
+								"description": "https://timetastic.co.uk/api/#restore-a-user"
+							},
+							"response": []
+						},
+						{
 							"name": "Get a specific user",
 							"request": {
 								"method": "GET",
@@ -374,7 +509,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays/***PUBLIC_HOLIDAY_ID***",
+									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays/9670044",
 									"host": [
 										"{{TIMETASTIC_BASEURL}}"
 									],
