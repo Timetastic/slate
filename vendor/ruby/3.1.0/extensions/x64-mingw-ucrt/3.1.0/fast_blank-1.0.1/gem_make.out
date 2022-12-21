@@ -1,0 +1,15 @@
+current directory: c:/git/slate/vendor/ruby/3.1.0/gems/fast_blank-1.0.1/ext/fast_blank
+C:/Ruby31-x64/bin/ruby.exe -I C:/Ruby31-x64/lib/ruby/3.1.0 -r ./siteconf20221221-26828-od0ffn.rb extconf.rb
+creating Makefile
+
+current directory: c:/git/slate/vendor/ruby/3.1.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\= clean
+
+current directory: c:/git/slate/vendor/ruby/3.1.0/gems/fast_blank-1.0.1/ext/fast_blank
+make DESTDIR\=
+generating fast_blank-x64-mingw-ucrt.def
+compiling fast_blank.c
+make: gcc: No such file or directory
+make: *** [Makefile:246: fast_blank.o] Error 127
+
+make failed, exit code 2

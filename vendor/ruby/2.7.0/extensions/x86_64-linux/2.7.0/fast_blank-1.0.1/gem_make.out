@@ -1,0 +1,15 @@
+current directory: /mnt/c/GIT/slate/vendor/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20221221-313-3y4r7w.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/c/GIT/slate/vendor/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR=" clean
+
+current directory: /mnt/c/GIT/slate/vendor/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR="
+compiling fast_blank.c
+linking shared-object fast_blank.so
+
+current directory: /mnt/c/GIT/slate/vendor/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 fast_blank.so ./.gem.20221221-313-3vsd79
