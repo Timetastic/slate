@@ -24,10 +24,13 @@ steps:
     addToPath: true
 
 - script: |
+    apt install ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
+    gem update --system
+    gem install bundler
     gem install bundler -v 1.15.4
     gem install middleman 
-    bundle _1.15.4_ install --retry=3 --jobs=4
-    bundle _1.15.4_ exec middleman build --clean
+    bundle install --retry=3 --jobs=4
+    bundle exec middleman build --clean
   displayName: 'build the site'    
   workingDirectory: '$(System.DefaultWorkingDirectory)'
 
