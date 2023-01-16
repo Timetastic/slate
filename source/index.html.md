@@ -686,6 +686,91 @@ Parameter | Type | Description
 **remaining** | Number | The remaining amount
 **used** | Number | The used amount
 
+
+## Get a User & Contact Details
+<aside class="notice">This endpoint is only accessible if you have a <a href="https://help.timetastic.co.uk/hc/en-us/categories/360002478198-Timetastic-Pro" rel="noopener" >Timetastic Pro</a> account</aside>
+
+
+`GET https://app.timetastic.co.uk/api/users/contact/<ID>`
+
+
+```shell
+curl "https://app.timetastic.co.uk/api/users/contact/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jobTitle": "Job Title",
+    "payrollId": "P12345",
+    "address1": "Suite 143",
+    "address2": "19 Lever Street",
+    "city": "Manchester",
+    "postCode": "M1 1AN",
+    "telephone1": "0161 496 0000",
+    "telephone2": "07700 900000",
+    "country": "GB",
+    "emergencyContactName": "Larnell Lewis",
+    "emergencyContactPhone": "07700 900001",
+    "id": 123456,
+    "firstname": "Michael",
+    "surname": "League",
+    "email": "mleague@example.com",
+    "admin": true,
+    "organisationId": 123456,
+    "departmentId": 78910,
+    "allowanceUnit": "Days",
+    "bossOfDepartments": [
+        60021,
+        61175
+    ],
+    "endDate": null,
+    "departmentName": "Customer Service",
+    "gravatar": "https://avatars.timetastic.co.uk/f403c04c-701e-002e-095b-c41ad3000000.png",
+    "allowanceRemaining": 29.0,
+    "hasLoggedOn": true,
+    "isArchived": false,
+    "approverId": 12345,
+    "deptBossId": 23456,
+    "birthday": "1977-02-07T00:00:00",
+    "startDate": "2019-01-01T00:00:00",
+    "hasPublicHolidays": false,
+    "userInitials": "ML",
+    "countryCode": null,
+    "currentYearAllowance": 29.0,
+    "nextYearAllowance": 30.0,
+    "userLinkedWithGoogle": false,
+    "mfaEnabled": false,
+    "inviteSentTimeUtc": null,
+    "inviteSentTimeHumanised": null
+}
+```
+
+
+Retrieves a specific user. In addition to the user detail, we return their work schedule, their allowances and any details from the Contact tab. 
+
+### The user detail response is identical to the <a href="#get-a-specific-user">Get a Specific User</a> endpoint with contact details added:
+
+### Contact Details response
+
+Parameter | Type | Description
+--------- | ---- | -----------
+**JobTitle** | String | The user's job title
+**PayrollId** | String | The user's payroll ID (will be included in reports)
+**Address1** | String | First line of the address
+**Address2** | String | Address line 2
+**City** | String | Address line 3 / City
+**PostCode** | String | Address line 4 / PostCode
+**Telephone1** | String | Primary contact number
+**Telephone2** | String | Secondary contact number
+**Country** | Country | String: ALPHA-2 country code | The user's country - set using a 2 letter country code. e.g. GB = United Kingdom
+**EmergencyContactName** | String | Name of emergency contact
+**EmergencyContactNumber** | String | Contact number of emergency contact
+
+
 ## Add a User
 <aside class="notice">⌛ This endpoint is limited to 2 requests per second</aside>
 

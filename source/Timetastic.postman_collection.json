@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59b431c8-18aa-4fb7-b90b-1f6ba400736c",
+		"_postman_id": "7e95aac7-71b6-427f-855e-d0f4bbcb90a8",
 		"name": "Timetastic",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -368,6 +368,37 @@
 								"description": "https://timetastic.co.uk/api/#list-all-holidays"
 							},
 							"response": []
+						},
+						{
+							"name": "Get User With Contact Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/users/contact/***USER_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"users",
+										"contact",
+										"***USER_ID***"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -509,7 +540,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays/***PUBLIC_HOLIDAY_ID***",
+									"raw": "{{TIMETASTIC_BASEURL}}/publicholidays/9670044",
 									"host": [
 										"{{TIMETASTIC_BASEURL}}"
 									],
