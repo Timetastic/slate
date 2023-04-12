@@ -1019,9 +1019,8 @@ Parameter |  Description
 **archived** | Whether the department is archived (deleted)
 ~~**countryCode**~~ | OBSOLETE - will be removed
 **userCount** | User count
-**currentAllowance** | The department allowance for the current leave year
-**nextAllowance** | The department allowance for the next leave year
-**allowanceRemaining** | The allowance remaining for this department, for the current year
+~~**currentAllowance**~~ | OBSOLETE - will be removed
+~~**nextAllowance**~~ | OBSOLETE - will be removed
 **maxOff** | The maximum number of staff allowed off at any one time
 ~~**bankHolidaySetId**~~ | OBSOLETE - will be removed
 
