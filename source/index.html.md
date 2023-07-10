@@ -48,7 +48,7 @@ If you exceed the limit, you'll get a `429` response code.
 
 For successful calls, we set response headers containing information about the rate limit - which can help you monitor your usage.
 
-### Monitoring usage
+## Monitoring usage
 
 For calls that don't get rate limited, you can monitor your usage with the following headers
 
@@ -464,7 +464,7 @@ message | Any additional message about the response.
     "organisationId": 10,
     "departmentId": 1,
     "allowanceUnit": "Days",
-    "bossOfDepartments": [
+    "managerOfDepartments": [
       10
     ],
     "endDate": null,
@@ -474,14 +474,15 @@ message | Any additional message about the response.
     "hasLoggedOn": true,
     "isArchived": false,
     "approverId": 139422,
-    "deptBossId": 148346,
+    "deptManagerId": 148346,
     "birthday": "1977-02-07T00:00:00",
     "startDate": "2017-02-04T00:00:00",
     "hasPublicHolidays": true,
     "userInitials": "MR",
     "countryCode": "GB",
     "currentYearAllowance": 33,
-    "nextYearAllowance": 34
+    "nextYearAllowance": 34,
+    "yearStart" : 1
   }
 ```
 
@@ -497,7 +498,7 @@ Parameter |  Description
 **organisationId** | The organisation Id of this user
 **departmentId** | The department Id of this user
 **allowanceUnit** | The allowance unit for the user - `Days` or `Hours`.
-**bossOfDepartments** | A comma-separated list of department ids that this user is a boss of.
+**managerOfDepartments** | A comma-separated list of department ids that this user is a manager of.
 **endDate** | If archived, when the user left the company
 **departmentName** | The name of the department this user belongs to
 **gravatar** | The URL of the avatar/gravatar resource for this user
@@ -505,7 +506,8 @@ Parameter |  Description
 **hasLoggedOn** | Whether this user has logged on
 **isArchived** | Whether this user is archived
 **approverId** | If the user has a specific approver set, this is the Id of that user
-**deptBossId** | The Id of the user who is the boss of the department this user belongs to
+**~~deptBossId~~** | We no longer use the word Boss - this parameter may be removed in future, use deptManagerId.
+**deptManagerId** | The Id of the user who is the manager of the department this user belongs to
 **birthday** | The birthday of this user
 **startDate** | The start date for this user.
 **hasPublicHolidays** | If this user has public holidays
@@ -513,6 +515,7 @@ Parameter |  Description
 **countryCode** | The country code of the country this user is assigned to (for public holidays)
 **currentYearAllowance** | The allowance for this user, for the current leaveyear
 **nextYearAllowance** | The allowance for this user, for the next leave year
+**yearStart** | The month that the user's leave year starts (1 being January to 12 being December)
 
 
 ## List all Users
@@ -542,7 +545,7 @@ curl "https://app.timetastic.co.uk/api/users?departmentId=10
     "organisationId": 10,
     "departmentId": 1,
     "allowanceUnit": "Days",
-    "bossOfDepartments": [
+    "managerOfDepartments": [
       10
     ],
     "endDate": null,
@@ -552,14 +555,15 @@ curl "https://app.timetastic.co.uk/api/users?departmentId=10
     "hasLoggedOn": true,
     "isArchived": false,
     "approverId": 139422,
-    "deptBossId": 148346,
+    "deptManagerId": 148346,
     "birthday": "1977-02-07T00:00:00",
     "startDate": "2017-02-04T00:00:00",
     "hasPublicHolidays": true,
     "userInitials": "MR",
     "countryCode": "GB",
     "currentYearAllowance": 33,
-    "nextYearAllowance": 34
+    "nextYearAllowance": 34,
+    "yearStart": 1
   },
   ...
 }
@@ -635,7 +639,7 @@ curl "https://app.timetastic.co.uk/api/users/1"
     "organisationId": 10,
     "departmentId": 1,
     "allowanceUnit": "Days",
-    "bossOfDepartments": [
+    "managerOfDepartments": [
       10
     ],
     "endDate": null,
@@ -645,14 +649,15 @@ curl "https://app.timetastic.co.uk/api/users/1"
     "hasLoggedOn": true,
     "isArchived": false,
     "approverId": 139422,
-    "deptBossId": 148346,
+    "deptManagerId": 148346,
     "birthday": "1977-02-07T00:00:00",
     "startDate": "2017-02-04T00:00:00",
     "hasPublicHolidays": true,
     "userInitials": "MR",
     "countryCode": "GB",
     "currentYearAllowance": 33,
-    "nextYearAllowance": 34
+    "nextYearAllowance": 34,
+    "yearStart":1
   }
 ```
 
@@ -723,7 +728,7 @@ curl "https://app.timetastic.co.uk/api/users/contact/<ID>"
     "organisationId": 123456,
     "departmentId": 78910,
     "allowanceUnit": "Days",
-    "bossOfDepartments": [
+    "managerOfDepartments": [
         60021,
         61175
     ],
@@ -734,7 +739,7 @@ curl "https://app.timetastic.co.uk/api/users/contact/<ID>"
     "hasLoggedOn": true,
     "isArchived": false,
     "approverId": 12345,
-    "deptBossId": 23456,
+    "deptManagerId": 23456,
     "birthday": "1977-02-07T00:00:00",
     "startDate": "2019-01-01T00:00:00",
     "hasPublicHolidays": false,
@@ -745,7 +750,8 @@ curl "https://app.timetastic.co.uk/api/users/contact/<ID>"
     "userLinkedWithGoogle": false,
     "mfaEnabled": false,
     "inviteSentTimeUtc": null,
-    "inviteSentTimeHumanised": null
+    "inviteSentTimeHumanised": null,
+    "yearStart": 1
 }
 ```
 
@@ -814,6 +820,7 @@ Parameter | Type | Description
 **EmailAddress** | String | The new user's Email address
 **SendWelcomeEmail** | Boolean | Whether to send the user an email to set a password and start using Timetastic
 **StartDate** | DateTime | The user's start date. In ISO 8601 format: `2022-02-04T00:00:00`
+**leaveYearStart** | Int | The month that the user's leave year starts (1: Jan, 2: Feb&hellip;12: Dec). *Omitting this will create a user with the same leave year that occurs most often in your Organisation*
 
 ### Response
 
