@@ -1099,7 +1099,8 @@ curl "https://app.timetastic.co.uk/api/departments/1"
     "active": true,
     "createdAt": "2016-03-21T10:25:44",
     "updatedAt": "2018-07-31T09:50:20",
-    "color": "#6699cc"
+    "color": "#6699cc",
+    "calendarVisibility": 1
   }
 ```
 
@@ -1116,6 +1117,19 @@ Parameter |  Description
 **createdAt** | When the leave type was created
 **updatedAt** | When the leave type was last updated
 **color** | The color of the leave type when used in Timetastic
+**calendarVisibility** | The Visibility/Transparency setting of the leave type
+
+**Calendar Visibility**
+
+Timetastic uses calendar transparency settings supported by the [iCal standard](https://icalendar.org/iCalendar-RFC-5545/3-8-2-7-time-transparency.html). Calendar visibility can be set to either of the following values:
+
+Value |  Description
+--------- | -------
+**1** | Busy
+**2** | Available
+
+
+
 
 ## List all Leave Types
 
