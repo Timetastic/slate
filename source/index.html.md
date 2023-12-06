@@ -1100,7 +1100,8 @@ curl "https://app.timetastic.co.uk/api/departments/1"
     "createdAt": "2016-03-21T10:25:44",
     "updatedAt": "2018-07-31T09:50:20",
     "color": "#6699cc",
-    "calendarVisibility": 1
+    "calendarVisibility": 1,
+    "isPrivate": true
   }
 ```
 
@@ -1118,6 +1119,7 @@ Parameter |  Description
 **updatedAt** | When the leave type was last updated
 **color** | The color of the leave type when used in Timetastic
 **calendarVisibility** | The Visibility/Transparency setting of the leave type
+**isPrivate** | Whether the leave type is set to private. Leave types with this set to false are public 
 
 **Calendar Visibility**
 
@@ -1155,7 +1157,9 @@ curl "https://app.timetastic.co.uk/api/leavetypes"
     "active": true,
     "createdAt": "2016-03-21T10:25:44",
     "updatedAt": "2018-07-31T09:50:20",
-    "color": "#6699cc"
+    "color": "#6699cc",
+    "calendarVisibility": 1,
+    "isPrivate": true
   },
   ...
 }
