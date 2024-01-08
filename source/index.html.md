@@ -1022,14 +1022,9 @@ Parameter |  Description
 **bossId** | The department's boss
 **createdAt** | When the department was created
 **updatedAt** | When the department was last updated
-~~**givePublicHolidays**~~ | OBSOLETE - will be removed
 **archived** | Whether the department is archived (deleted)
-~~**countryCode**~~ | OBSOLETE - will be removed
 **userCount** | User count
-~~**currentAllowance**~~ | OBSOLETE - will be removed
-~~**nextAllowance**~~ | OBSOLETE - will be removed
 **maxOff** | The maximum number of staff allowed off at any one time
-~~**bankHolidaySetId**~~ | OBSOLETE - will be removed
 
 ## List all Departments
 
@@ -1051,17 +1046,12 @@ curl "https://app.timetastic.co.uk/api/departments"
     "id": 1,
     "organisationId": 10,
     "name": "Sales",
-    "bossId": 1001,
+    "managerId": 1001,
     "createdAt": "2010-01-01T00:00:00",
     "updatedAt": "2010-01-01T00:00:00",
-    "givePublicHolidays": false,
     "archived": false,
-    "countryCode": "",
     "userCount": 9,
-    "currentAllowance": 20,
-    "nextAllowance": 35,
     "maxOff": 2,
-    "bankHolidaySetId": 0
   }
 ]
 ```
