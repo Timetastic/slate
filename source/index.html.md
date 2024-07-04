@@ -1056,7 +1056,7 @@ curl "https://app.timetastic.co.uk/api/departments"
 ]
 ```
 
-## Get a Specific Department
+## Get a Department
 
 Gets a specific department.
 
@@ -1072,6 +1072,99 @@ ID | The ID of the department to retrieve
 curl "https://app.timetastic.co.uk/api/departments/1"
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
+
+## Add a Department
+
+Adds a new department
+
+`POST https://app.timetastic.co.uk/api/departments/add/`
+
+```shell
+curl "https://app.timetastic.co.uk/api/departments/add"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  --data $'{
+    Name: "Customer Support",
+    ManagerId: 1234,
+}'
+```
+
+> The above command returns a `200 OK` if the changes were successful with the new department ID
+ or a `400 BadRequest` if not
+
+Adds a new department to Timetastic.
+
+### Required Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+Name | String | The user's first name
+ManagerId | Int | The userId of the Manager for this department
+
+### Optional Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+MaxOff | Int [0-20] | The maximum absent setting for this department
+
+
+## Update a Department
+
+Updates a department
+
+`POST https://app.timetastic.co.uk/api/departments/edit/<ID>`
+
+```shell
+curl "https://app.timetastic.co.uk/api/departments/edit/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  --data $'{
+    Name: "Customer Support",
+    ManagerId: 1234,
+    MaxOff: 1
+}'
+```
+
+> The above command returns a `200 OK` if the changes were successful
+ or a `400 BadRequest` if not
+
+Edits an existing department in Timetastic.
+
+### Available Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+Name | String | The user's first name
+ManagerId | Int |The userId of the Manager for this department
+MaxOff | Int [0-20] | The maximum number of users that can be absent in this department at once. Set to 0 to disable Maximum absent and have no limit. 
+
+As with the user edit endpoint - pass only the fields you want to update and we'll only update those.
+
+## Delete a Department
+
+Deletes a department from Timetastic
+
+`POST https://app.timetastic.co.uk/api/departments/delete/<ID>`
+
+```shell
+curl "https://app.timetastic.co.uk/api/departments/delete/<ID>"
+  -H "Authorization: Bearer YOUR_TOKEN"
+  -H 'Content-Type: application/json'
+  '
+```
+
+> The above command returns a `200 OK` if the changes were successful
+ or a `400 BadRequest` if not
+
+Deletes a department from Timetastic.  The department must be empty - edit any users with this department ID to allow the department to be deleted.
+
+### Required Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+ID | Int | The Department ID
+
+
 
 # Leave Types
 
