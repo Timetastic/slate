@@ -1098,7 +1098,7 @@ Adds a new department to Timetastic.
 
 Parameter | Type | Description
 --------- | ---- | -----------
-Name | String | The user's first name
+Name | String | The Department name
 ManagerId | Int | The userId of the Manager for this department
 
 ### Optional Parameters
@@ -1134,7 +1134,7 @@ Edits an existing department in Timetastic.
 
 Parameter | Type | Description
 --------- | ---- | -----------
-Name | String | The user's first name
+Name | String | The Department name
 ManagerId | Int |The userId of the Manager for this department
 MaxOff | Int [0-20] | The maximum number of users that can be absent in this department at once. Set to 0 to disable Maximum absent and have no limit. 
 
