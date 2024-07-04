@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7e95aac7-71b6-427f-855e-d0f4bbcb90a8",
+		"_postman_id": "6080c5ad-a5da-41e4-9998-f79478203eae",
 		"name": "Timetastic",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14195080"
 	},
 	"item": [
 		{
@@ -202,7 +203,7 @@
 										"users"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#list-all-users](https://timetastic.co.uk/api/#list-all-users)"
 							},
 							"response": []
 						},
@@ -365,7 +366,7 @@
 										"***USER_ID***"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#get-a-specific-user](https://timetastic.co.uk/api/#get-a-specific-user)"
 							},
 							"response": []
 						},
@@ -396,7 +397,8 @@
 										"contact",
 										"***USER_ID***"
 									]
-								}
+								},
+								"description": "[https://timetastic.co.uk/api/#get-a-user-amp-contact-details](https://timetastic.co.uk/api/#get-a-user-amp-contact-details)"
 							},
 							"response": []
 						}
@@ -429,7 +431,7 @@
 										"***DEPARTMENT_ID***"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#get-a-specific-department](https://timetastic.co.uk/api/#get-a-specific-department)"
 							},
 							"response": []
 						},
@@ -456,7 +458,94 @@
 										"departments"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#list-all-departments](https://timetastic.co.uk/api/#list-all-departments)"
+							},
+							"response": []
+						},
+						{
+							"name": "Add Department",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"A new department\",\r\n    \"ManagerId\": 123456\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/departments/add/",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"departments",
+										"add",
+										""
+									]
+								},
+								"description": "[https://timetastic.co.uk/api/#add-a-department](https://timetastic.co.uk/api/#list-all-departments)"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Department",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\": \"An edited department\",\r\n    \"ManagerId\": 123456,\r\n    \"MaxOff\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/departments/edit/***DEPARTMENT_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"departments",
+										"edit",
+										"***DEPARTMENT_ID***"
+									]
+								},
+								"description": "[https://timetastic.co.uk/api/#update-a-department](https://timetastic.co.uk/api/#list-all-departments)"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Department",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TIMETASTIC_BASEURL}}/departments/delete/***DEPARTMENT_ID***",
+									"host": [
+										"{{TIMETASTIC_BASEURL}}"
+									],
+									"path": [
+										"departments",
+										"delete",
+										"***DEPARTMENT_ID***"
+									]
+								},
+								"description": "[https://timetastic.co.uk/api/#delete-a-department](https://timetastic.co.uk/api/#list-all-departments)"
 							},
 							"response": []
 						}
@@ -489,7 +578,7 @@
 										"***LEAVE_TYPE_ID***"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#get-a-specific-leave-type](https://timetastic.co.uk/api/#get-a-specific-leave-type)"
 							},
 							"response": []
 						},
@@ -516,7 +605,7 @@
 										"leavetypes"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#list-all-leave-types](https://timetastic.co.uk/api/#list-all-leave-types)"
 							},
 							"response": []
 						}
@@ -549,7 +638,7 @@
 										"9670044"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#get-a-specific-holiday"
+								"description": "[https://timetastic.co.uk/api/#get-a-specific-public-holiday](https://timetastic.co.uk/api/#get-a-specific-public-holiday)"
 							},
 							"response": []
 						},
@@ -576,7 +665,7 @@
 										"publicholidays"
 									]
 								},
-								"description": "https://timetastic.co.uk/api/#list-all-holidays"
+								"description": "[https://timetastic.co.uk/api/#list-all-public-holidays](https://timetastic.co.uk/api/#list-all-public-holidays)"
 							},
 							"response": []
 						}
