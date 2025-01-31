@@ -28,6 +28,7 @@ steps:
     gem update --system
     gem install bundler
     gem install middleman 
+    bundle update --bundler
     bundle install --retry=3 --jobs=4
     bundle exec middleman build --clean
   displayName: 'build the site'    
